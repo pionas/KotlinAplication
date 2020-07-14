@@ -1,7 +1,8 @@
-package pl.pionas.kotlinaplication
+package pl.pionas.kotlinaplication.fatures
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import pl.pionas.kotlinaplication.R
 
 class MainActivity : AppCompatActivity() {
 
