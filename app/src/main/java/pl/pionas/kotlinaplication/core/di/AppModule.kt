@@ -3,8 +3,6 @@ package pl.pionas.kotlinaplication.core.di
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.room.Room
-import androidx.room.RoomDatabase
 import org.koin.dsl.module
 
 /**
@@ -21,9 +19,5 @@ val appModule = module {
     }
     single {
         DividerItemDecoration(get(), LinearLayoutManager.VERTICAL)
-    }
-    single {
-        Room.databaseBuilder(get(), RoomDatabase::class.java, "kotlin_application.db")
-            .build()
     }
 }
