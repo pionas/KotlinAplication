@@ -1,13 +1,14 @@
 package pl.pionas.kotlinaplication.features.characters.presentation.model
 
-import pl.pionas.kotlinaplication.features.characters.domain.model.Location
+import pl.pionas.kotlinaplication.features.characters.domain.model.Character
 import pl.pionas.kotlinaplication.features.characters.domain.model.Origin
+import pl.pionas.kotlinaplication.features.locations.domain.model.Location
 
 /**
  * Created by Adrian Pionka on 27 lipiec 2020
  * adrian@pionka.com
  */
-data class Character(
+data class CharacterDisplayable(
     val id: Int,
     val name: String,
     val status: String,

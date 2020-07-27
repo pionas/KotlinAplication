@@ -1,5 +1,7 @@
 package pl.pionas.kotlinaplication.features.characters.domain.model
 
+import pl.pionas.kotlinaplication.features.locations.domain.model.Location
+
 /**
  * Created by Adrian Pionka on 27 lipiec 2020
  * adrian@pionka.com

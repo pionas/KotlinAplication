@@ -1,7 +1,7 @@
 package pl.pionas.kotlinaplication.features.data.remote.model
 
 import com.google.gson.annotations.SerializedName
-import pl.pionas.kotlinaplication.features.characters.domain.model.Location
+import pl.pionas.kotlinaplication.features.locations.domain.model.Location
 
 /**
  * Created by Adrian Pionka on 27 lipiec 2020
@@ -9,11 +9,20 @@ import pl.pionas.kotlinaplication.features.characters.domain.model.Location
  */
 
 data class LocationRemote(
+    @SerializedName("id") val id: Int,
     @SerializedName("name") val name: String,
-    @SerializedName("url") val url: String
+    @SerializedName("type") val type: String,
+    @SerializedName("dimension") val dimension: String,
+    @SerializedName("residents") val residents: List<String>,
+    @SerializedName("url") val url: String,
+    @SerializedName("created") val created: String
 ) {
     fun toLocation() = Location(
+        id = id,
         name = name,
+        type = type,
+        dimension = dimension,
+        residents = residents,
         url = url
     )
 }
