@@ -1,4 +1,4 @@
-package pl.pionas.kotlinaplication.fatures.data
+package pl.pionas.kotlinaplication.features.data.remote
 
 /**
  * Created by Adrian Pionka on 13 lipiec 2020
