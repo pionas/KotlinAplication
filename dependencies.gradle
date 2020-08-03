@@ -58,10 +58,20 @@ ext {
 
     def roomVersion = "2.2.5"
     roomImplementation = [
-            roomRuntime : "androidx.room:room-runtime:" + roomVersion
+            roomRuntime: "androidx.room:room-runtime:" + roomVersion
     ]
     roomKapt = [
             roomCompiler: "androidx.room:room-compiler:" + roomVersion
+    ]
+
+    def mockkVersion = "1.10.0"
+    mockkDependencies = [
+            mockk: "io.mockk:mockk:" + mockkVersion
+    ]
+
+    def jupiterVersion = "5.7.0-M1"
+    jupiterDependencies = [
+            jupiter: "org.junit.jupiter:junit-jupiter-api:" + jupiterVersion
     ]
 
 }
