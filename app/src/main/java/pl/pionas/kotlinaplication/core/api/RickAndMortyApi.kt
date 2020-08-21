@@ -2,6 +2,7 @@ package pl.pionas.kotlinaplication.core.api
 
 import pl.pionas.kotlinaplication.core.api.model.CharacterResponse
 import pl.pionas.kotlinaplication.core.api.model.EpisodesResponse
+import pl.pionas.kotlinaplication.core.api.model.LocationResponse
 import retrofit2.http.GET
 
 /**
@@ -15,5 +16,8 @@ interface RickAndMortyApi {
 
     @GET("character")
     suspend fun getCharacters(): CharacterResponse
+
+    @GET("location")
+    suspend fun getLocations(): LocationResponse
 
 }

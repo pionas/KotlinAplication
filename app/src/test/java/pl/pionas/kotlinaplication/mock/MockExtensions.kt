@@ -5,7 +5,7 @@ import pl.pionas.kotlinaplication.core.api.model.*
 import pl.pionas.kotlinaplication.features.characters.data.local.model.CharacterCached
 import pl.pionas.kotlinaplication.features.characters.domain.model.Origin
 import pl.pionas.kotlinaplication.features.episodes.data.local.model.EpisodeCached
-import pl.pionas.kotlinaplication.features.locations.domain.model.Location
+import pl.pionas.kotlinaplication.features.locations.data.local.model.LocationCached
 
 /**
  * Created by Adrian Pionka on 21 sierpień 2020
@@ -51,15 +51,6 @@ fun EpisodeCached.Companion.mock() = EpisodeCached(
     url = "episode url"
 )
 
-fun Location.Companion.mock() = Location(
-    id = 1,
-    name = "location name",
-    type = "location type",
-    dimension = "location dimension",
-    residents = emptyList(),
-    url = "location url"
-)
-
 fun LocationRemote.Companion.mock() = LocationRemote(
     id = 1,
     name = "location name",
@@ -68,6 +59,26 @@ fun LocationRemote.Companion.mock() = LocationRemote(
     residents = emptyList(),
     url = "location url",
     created = "example date"
+)
+
+@TestOnly
+fun LocationResponse.Companion.mock() = LocationResponse(
+    info = ResponseInfo.mock(),
+    results = listOf(
+        LocationRemote.mock(),
+        LocationRemote.mock(),
+        LocationRemote.mock()
+    )
+)
+
+@TestOnly
+fun LocationCached.Companion.mock() = LocationCached(
+    id = 1,
+    name = "location name",
+    type = "location type",
+    dimension = "location dimension",
+    residents = emptyList(),
+    url = "location url"
 )
 
 fun Origin.Companion.mock() = Origin(
@@ -113,7 +124,7 @@ fun CharacterCached.Companion.mock() = CharacterCached(
     type = "character type",
     gender = "character gender",
     origin = Origin.mock(),
-    location = Location.mock(),
+    location = LocationRemote.mock().toLocation(),
     image = "character image",
     episode = emptyList(),
     url = "character url"
