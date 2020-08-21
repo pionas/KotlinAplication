@@ -1,0 +1,15 @@
+package pl.pionas.kotlinaplication.core.api
+
+import pl.pionas.kotlinaplication.core.api.model.EpisodesResponse
+import retrofit2.http.GET
+
+/**
+ * Created by Adrian Pionka on 13 lipiec 2020
+ * adrian@pionka.com
+ */
+interface RickAndMortyApi {
+
+    @GET("episodes")
+    suspend fun getEpisodes(): EpisodesResponse
+
+}
