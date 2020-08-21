@@ -1,10 +1,11 @@
 package pl.pionas.kotlinaplication.mock
 
 import org.jetbrains.annotations.TestOnly
-import pl.pionas.kotlinaplication.core.api.model.EpisodeRemote
-import pl.pionas.kotlinaplication.core.api.model.EpisodesResponse
-import pl.pionas.kotlinaplication.core.api.model.ResponseInfo
+import pl.pionas.kotlinaplication.core.api.model.*
+import pl.pionas.kotlinaplication.features.characters.data.local.model.CharacterCached
+import pl.pionas.kotlinaplication.features.characters.domain.model.Origin
 import pl.pionas.kotlinaplication.features.episodes.data.local.model.EpisodeCached
+import pl.pionas.kotlinaplication.features.locations.domain.model.Location
 
 /**
  * Created by Adrian Pionka on 21 sierpień 2020
@@ -48,4 +49,72 @@ fun EpisodeCached.Companion.mock() = EpisodeCached(
     code = "episode code",
     characters = emptyList(),
     url = "episode url"
+)
+
+fun Location.Companion.mock() = Location(
+    id = 1,
+    name = "location name",
+    type = "location type",
+    dimension = "location dimension",
+    residents = emptyList(),
+    url = "location url"
+)
+
+fun LocationRemote.Companion.mock() = LocationRemote(
+    id = 1,
+    name = "location name",
+    type = "location type",
+    dimension = "location dimension",
+    residents = emptyList(),
+    url = "location url",
+    created = "example date"
+)
+
+fun Origin.Companion.mock() = Origin(
+    name = "origin name",
+    url = "orogin url"
+)
+
+fun OriginRemote.Companion.mock() = OriginRemote(
+    name = "origin name",
+    url = "orogin url"
+)
+
+@TestOnly
+fun CharacterRemote.Companion.mock() = CharacterRemote(
+    id = 1,
+    name = "character name",
+    status = "character status",
+    species = "character species",
+    type = "character type",
+    gender = "character gender",
+    origin = OriginRemote.mock(),
+    location = LocationRemote.mock(),
+    image = "character image",
+    episode = emptyList(),
+    url = "character url",
+    created = "example date"
+)
+
+fun CharacterResponse.Companion.mock() = CharacterResponse(
+    info = ResponseInfo.mock(),
+    results = listOf(
+        CharacterRemote.mock(),
+        CharacterRemote.mock(),
+        CharacterRemote.mock()
+    )
+)
+
+fun CharacterCached.Companion.mock() = CharacterCached(
+    id = 1,
+    name = "character name",
+    status = "character status",
+    species = "character species",
+    type = "character type",
+    gender = "character gender",
+    origin = Origin.mock(),
+    location = Location.mock(),
+    image = "character image",
+    episode = emptyList(),
+    url = "character url"
 )

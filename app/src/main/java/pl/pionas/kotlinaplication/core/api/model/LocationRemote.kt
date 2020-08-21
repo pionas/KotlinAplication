@@ -17,6 +17,8 @@ data class LocationRemote(
     @SerializedName("url") val url: String,
     @SerializedName("created") val created: String
 ) {
+    companion object
+
     fun toLocation() = Location(
         id = id,
         name = name,

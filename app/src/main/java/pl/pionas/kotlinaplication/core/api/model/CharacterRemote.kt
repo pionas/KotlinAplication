@@ -23,6 +23,8 @@ data class CharacterRemote(
     @SerializedName("url") val url: String,
     @SerializedName("created") val created: String
 ) {
+    companion object
+
     fun toCharacter() = Character(
         id = id,
         name = name,
