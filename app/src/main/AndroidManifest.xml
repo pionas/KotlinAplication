@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="pl.pionas.kotlinaplication">
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <application
         android:name=".core.app.App"
         android:allowBackup="true"
@@ -10,7 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="pl.pionas.kotlinaplication.fatures.MainActivity">
+        <activity android:name="pl.pionas.kotlinaplication.features.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

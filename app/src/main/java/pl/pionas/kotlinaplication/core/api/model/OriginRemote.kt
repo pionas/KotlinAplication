@@ -1,4 +1,4 @@
-package pl.pionas.kotlinaplication.features.data.remote.model
+package pl.pionas.kotlinaplication.core.api.model
 
 import com.google.gson.annotations.SerializedName
 import pl.pionas.kotlinaplication.features.characters.domain.model.Origin
@@ -12,6 +12,8 @@ data class OriginRemote(
     @SerializedName("name") val name: String,
     @SerializedName("url") val url: String
 ) {
+    companion object
+
     fun toOrigin() = Origin(
         name = name,
         url = url

@@ -1,11 +1,10 @@
-package pl.pionas.kotlinaplication.features.episodes.domain
+package pl.pionas.kotlinaplication.features.characters.domain
 
 import io.mockk.coVerify
 import io.mockk.mockk
 import kotlinx.coroutines.GlobalScope
 import org.junit.jupiter.api.Test
 import pl.pionas.kotlinaplication.features.characters.CharacterRepository
-import pl.pionas.kotlinaplication.features.characters.domain.GetCharacterUseCase
 
 
 /**

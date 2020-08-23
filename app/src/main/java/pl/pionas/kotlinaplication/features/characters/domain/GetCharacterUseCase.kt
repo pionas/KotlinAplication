@@ -2,6 +2,7 @@ package pl.pionas.kotlinaplication.features.characters.domain
 
 import pl.pionas.kotlinaplication.core.base.UseCase
 import pl.pionas.kotlinaplication.features.characters.CharacterRepository
+import pl.pionas.kotlinaplication.features.characters.domain.model.Character
 
 
 /**

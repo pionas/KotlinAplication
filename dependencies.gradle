@@ -58,7 +58,8 @@ ext {
 
     def roomVersion = "2.2.5"
     roomImplementation = [
-            roomRuntime: "androidx.room:room-runtime:" + roomVersion
+            roomRuntime: "androidx.room:room-runtime:" + roomVersion,
+            roomRuntime: "androidx.room:room-ktx:" + roomVersion
     ]
     roomKapt = [
             roomCompiler: "androidx.room:room-compiler:" + roomVersion

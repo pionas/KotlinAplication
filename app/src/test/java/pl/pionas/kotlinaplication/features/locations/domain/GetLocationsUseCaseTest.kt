@@ -1,11 +1,10 @@
-package pl.pionas.kotlinaplication.features.episodes.domain
+package pl.pionas.kotlinaplication.features.locations.domain
 
 import io.mockk.coVerify
 import io.mockk.mockk
 import kotlinx.coroutines.GlobalScope
 import org.junit.jupiter.api.Test
 import pl.pionas.kotlinaplication.features.locations.LocationRepository
-import pl.pionas.kotlinaplication.features.locations.domain.GetLocationUseCase
 
 
 /**
