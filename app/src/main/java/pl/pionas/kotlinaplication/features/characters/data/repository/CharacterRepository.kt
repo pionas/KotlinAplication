@@ -1,4 +1,4 @@
-package pl.pionas.kotlinaplication.features.characters
+package pl.pionas.kotlinaplication.features.characters.data.repository
 
 import pl.pionas.kotlinaplication.features.characters.domain.model.Character
 

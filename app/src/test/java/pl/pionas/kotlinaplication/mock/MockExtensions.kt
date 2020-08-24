@@ -3,6 +3,7 @@ package pl.pionas.kotlinaplication.mock
 import org.jetbrains.annotations.TestOnly
 import pl.pionas.kotlinaplication.core.api.model.*
 import pl.pionas.kotlinaplication.features.characters.data.local.model.CharacterCached
+import pl.pionas.kotlinaplication.features.characters.domain.model.Character
 import pl.pionas.kotlinaplication.features.characters.domain.model.Origin
 import pl.pionas.kotlinaplication.features.episodes.data.local.model.EpisodeCached
 import pl.pionas.kotlinaplication.features.episodes.domain.model.Episode
@@ -139,6 +140,21 @@ fun CharacterResponse.Companion.mock() = CharacterResponse(
 )
 
 fun CharacterCached.Companion.mock() = CharacterCached(
+    id = 1,
+    name = "character name",
+    status = "character status",
+    species = "character species",
+    type = "character type",
+    gender = "character gender",
+    origin = Origin.mock(),
+    location = LocationRemote.mock().toLocation(),
+    image = "character image",
+    episode = emptyList(),
+    url = "character url"
+)
+
+@TestOnly
+fun Character.Companion.mock() = Character(
     id = 1,
     name = "character name",
     status = "character status",

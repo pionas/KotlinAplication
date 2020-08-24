@@ -8,7 +8,6 @@ import org.junit.jupiter.api.Test
 import pl.pionas.kotlinaplication.core.api.RickAndMortyApi
 import pl.pionas.kotlinaplication.core.api.model.CharacterResponse
 import pl.pionas.kotlinaplication.core.network.NetworkStateProvider
-import pl.pionas.kotlinaplication.features.characters.CharacterRepository
 import pl.pionas.kotlinaplication.features.characters.data.local.CharacterDao
 import pl.pionas.kotlinaplication.features.characters.data.local.model.CharacterCached
 import pl.pionas.kotlinaplication.mock.mock

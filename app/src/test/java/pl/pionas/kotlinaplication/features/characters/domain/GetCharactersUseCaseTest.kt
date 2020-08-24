@@ -4,7 +4,7 @@ import io.mockk.coVerify
 import io.mockk.mockk
 import kotlinx.coroutines.GlobalScope
 import org.junit.jupiter.api.Test
-import pl.pionas.kotlinaplication.features.characters.CharacterRepository
+import pl.pionas.kotlinaplication.features.characters.data.repository.CharacterRepository
 
 
 /**
@@ -17,7 +17,7 @@ internal class GetCharactersUseCaseTest {
     fun `when use case is invoked than execute getCharacters method from repository`() {
         // given
         val repository = mockk<CharacterRepository>(relaxed = true)
-        val useCase = GetCharacterUseCase(repository)
+        val useCase = GetCharactersUseCase(repository)
 
         // when
         useCase(

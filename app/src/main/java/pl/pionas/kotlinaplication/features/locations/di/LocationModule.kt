@@ -2,10 +2,10 @@ package pl.pionas.kotlinaplication.features.locations.di
 
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
-import pl.pionas.kotlinaplication.features.episodes.presentation.EpisodeFragment
 import pl.pionas.kotlinaplication.features.locations.data.repository.LocationRepository
 import pl.pionas.kotlinaplication.features.locations.data.repository.LocationRepositoryImpl
 import pl.pionas.kotlinaplication.features.locations.domain.GetLocationsUseCase
+import pl.pionas.kotlinaplication.features.locations.presentation.LocationFragment
 import pl.pionas.kotlinaplication.features.locations.presentation.LocationViewModel
 
 /**
@@ -22,5 +22,5 @@ val locationModule = module {
 
     // presentation
     viewModel { LocationViewModel(get()) }
-    factory { EpisodeFragment() }
+    factory { LocationFragment() }
 }
