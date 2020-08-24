@@ -2,7 +2,6 @@ package pl.pionas.kotlinaplication.features.episodes.data.repository
 
 import pl.pionas.kotlinaplication.core.api.RickAndMortyApi
 import pl.pionas.kotlinaplication.core.network.NetworkStateProvider
-import pl.pionas.kotlinaplication.features.episodes.EpisodeRepository
 import pl.pionas.kotlinaplication.features.episodes.data.local.EpisodeDao
 import pl.pionas.kotlinaplication.features.episodes.data.local.model.EpisodeCached
 import pl.pionas.kotlinaplication.features.episodes.domain.model.Episode

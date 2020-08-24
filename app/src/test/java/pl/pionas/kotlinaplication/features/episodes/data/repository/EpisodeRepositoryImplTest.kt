@@ -8,7 +8,6 @@ import org.junit.jupiter.api.Test
 import pl.pionas.kotlinaplication.core.api.RickAndMortyApi
 import pl.pionas.kotlinaplication.core.api.model.EpisodesResponse
 import pl.pionas.kotlinaplication.core.network.NetworkStateProvider
-import pl.pionas.kotlinaplication.features.episodes.EpisodeRepository
 import pl.pionas.kotlinaplication.features.episodes.data.local.EpisodeDao
 import pl.pionas.kotlinaplication.features.episodes.data.local.model.EpisodeCached
 import pl.pionas.kotlinaplication.mock.mock

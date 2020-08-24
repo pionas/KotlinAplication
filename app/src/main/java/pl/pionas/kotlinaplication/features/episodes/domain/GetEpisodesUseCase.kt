@@ -1,7 +1,7 @@
 package pl.pionas.kotlinaplication.features.episodes.domain
 
 import pl.pionas.kotlinaplication.core.base.UseCase
-import pl.pionas.kotlinaplication.features.episodes.EpisodeRepository
+import pl.pionas.kotlinaplication.features.episodes.data.repository.EpisodeRepository
 import pl.pionas.kotlinaplication.features.episodes.domain.model.Episode
 
 /**
