@@ -1,4 +1,4 @@
-package pl.pionas.kotlinaplication.features.locations
+package pl.pionas.kotlinaplication.features.locations.data.repository
 
 import pl.pionas.kotlinaplication.features.locations.domain.model.Location
 

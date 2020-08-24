@@ -8,7 +8,6 @@ import org.junit.jupiter.api.Test
 import pl.pionas.kotlinaplication.core.api.RickAndMortyApi
 import pl.pionas.kotlinaplication.core.api.model.LocationResponse
 import pl.pionas.kotlinaplication.core.network.NetworkStateProvider
-import pl.pionas.kotlinaplication.features.locations.LocationRepository
 import pl.pionas.kotlinaplication.features.locations.data.local.LocationDao
 import pl.pionas.kotlinaplication.features.locations.data.local.model.LocationCached
 import pl.pionas.kotlinaplication.mock.mock

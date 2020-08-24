@@ -7,6 +7,7 @@ import pl.pionas.kotlinaplication.features.characters.domain.model.Origin
 import pl.pionas.kotlinaplication.features.episodes.data.local.model.EpisodeCached
 import pl.pionas.kotlinaplication.features.episodes.domain.model.Episode
 import pl.pionas.kotlinaplication.features.locations.data.local.model.LocationCached
+import pl.pionas.kotlinaplication.features.locations.domain.model.Location
 
 /**
  * Created by Adrian Pionka on 21 sierpień 2020
@@ -84,6 +85,16 @@ fun LocationResponse.Companion.mock() = LocationResponse(
 
 @TestOnly
 fun LocationCached.Companion.mock() = LocationCached(
+    id = 1,
+    name = "location name",
+    type = "location type",
+    dimension = "location dimension",
+    residents = emptyList(),
+    url = "location url"
+)
+
+@TestOnly
+fun Location.Companion.mock() = Location(
     id = 1,
     name = "location name",
     type = "location type",

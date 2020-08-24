@@ -5,7 +5,6 @@ import org.koin.dsl.module
 import pl.pionas.kotlinaplication.features.episodes.data.repository.EpisodeRepository
 import pl.pionas.kotlinaplication.features.episodes.data.repository.EpisodeRepositoryImpl
 import pl.pionas.kotlinaplication.features.episodes.domain.GetEpisodesUseCase
-import pl.pionas.kotlinaplication.features.episodes.presentation.EpisodeAdapter
 import pl.pionas.kotlinaplication.features.episodes.presentation.EpisodeFragment
 import pl.pionas.kotlinaplication.features.episodes.presentation.EpisodeViewModel
 
@@ -24,5 +23,4 @@ val episodeModule = module {
     // presentation
     viewModel { EpisodeViewModel(get()) }
     factory { EpisodeFragment() }
-    factory { EpisodeAdapter() }
 }
