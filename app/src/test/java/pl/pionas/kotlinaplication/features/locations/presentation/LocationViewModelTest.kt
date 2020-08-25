@@ -68,9 +68,7 @@ internal class LocationViewModelTest : ViewModelTest() {
         viewModel.uiState.getOrAwaitValue() shouldBe UiState.Idle
         viewModel.locations.getOrAwaitValue().forEachIndexed { index, locationDisplayable ->
             val location = locations[index]
-            locationDisplayable.id shouldBe location.id
             locationDisplayable.name shouldBe location.name
-            locationDisplayable.type shouldBe location.type
         }
     }
 

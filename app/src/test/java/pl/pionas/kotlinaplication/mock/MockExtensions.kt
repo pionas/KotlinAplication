@@ -65,13 +65,8 @@ fun Episode.Companion.mock() = Episode(
 )
 
 fun LocationRemote.Companion.mock() = LocationRemote(
-    id = 1,
     name = "location name",
-    type = "location type",
-    dimension = "location dimension",
-    residents = emptyList(),
-    url = "location url",
-    created = "example date"
+    url = "location url"
 )
 
 @TestOnly
@@ -86,21 +81,13 @@ fun LocationResponse.Companion.mock() = LocationResponse(
 
 @TestOnly
 fun LocationCached.Companion.mock() = LocationCached(
-    id = 1,
     name = "location name",
-    type = "location type",
-    dimension = "location dimension",
-    residents = emptyList(),
     url = "location url"
 )
 
 @TestOnly
 fun Location.Companion.mock() = Location(
-    id = 1,
     name = "location name",
-    type = "location type",
-    dimension = "location dimension",
-    residents = emptyList(),
     url = "location url"
 )
 
