@@ -5,8 +5,8 @@ import org.koin.dsl.module
 import pl.pionas.kotlinaplication.features.characters.data.repository.CharacterRepository
 import pl.pionas.kotlinaplication.features.characters.data.repository.CharacterRepositoryImpl
 import pl.pionas.kotlinaplication.features.characters.domain.GetCharactersUseCase
+import pl.pionas.kotlinaplication.features.characters.presentation.CharacterFragment
 import pl.pionas.kotlinaplication.features.characters.presentation.CharacterViewModel
-import pl.pionas.kotlinaplication.features.episodes.presentation.EpisodeFragment
 
 /**
  * Created by Adrian Pionka on 24 sierpień 2020
@@ -22,5 +22,5 @@ val characterModule = module {
 
     // presentation
     viewModel { CharacterViewModel(get()) }
-    factory { EpisodeFragment() }
+    factory { CharacterFragment() }
 }
