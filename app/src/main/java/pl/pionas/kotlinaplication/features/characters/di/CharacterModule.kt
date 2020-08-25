@@ -5,6 +5,7 @@ import org.koin.dsl.module
 import pl.pionas.kotlinaplication.features.characters.data.repository.CharacterRepository
 import pl.pionas.kotlinaplication.features.characters.data.repository.CharacterRepositoryImpl
 import pl.pionas.kotlinaplication.features.characters.domain.GetCharactersUseCase
+import pl.pionas.kotlinaplication.features.characters.presentation.CharacterAdapter
 import pl.pionas.kotlinaplication.features.characters.presentation.CharacterFragment
 import pl.pionas.kotlinaplication.features.characters.presentation.CharacterViewModel
 
@@ -23,4 +24,5 @@ val characterModule = module {
     // presentation
     viewModel { CharacterViewModel(get()) }
     factory { CharacterFragment() }
+    factory { CharacterAdapter() }
 }

@@ -13,7 +13,9 @@ import pl.pionas.kotlinaplication.features.characters.presentation.model.Charact
  * Created by Adrian Pionka on 24 sierpień 2020
  * adrian@pionka.com
  */
-class CharacterViewModel(private val getCharactersUseCase: GetCharactersUseCase) : BaseViewModel() {
+class CharacterViewModel(
+    private val getCharactersUseCase: GetCharactersUseCase
+) : BaseViewModel() {
     private val _characters by lazy {
         MutableLiveData<List<Character>>()
             .also {

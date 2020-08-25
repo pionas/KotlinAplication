@@ -1,7 +1,6 @@
 package pl.pionas.kotlinaplication.core.di
 
 import androidx.room.Room
-import androidx.room.RoomDatabase
 import org.koin.dsl.module
 import pl.pionas.kotlinaplication.core.database.AppDatabase
 
@@ -11,7 +10,7 @@ import pl.pionas.kotlinaplication.core.database.AppDatabase
  */
 val databaseModule = module {
     single {
-        Room.databaseBuilder(get(), RoomDatabase::class.java, "kotlin_application.db")
+        Room.databaseBuilder(get(), AppDatabase::class.java, "kotlin_application.db")
             .build()
     }
 
