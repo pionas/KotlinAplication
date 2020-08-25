@@ -9,7 +9,9 @@ import pl.pionas.kotlinaplication.features.locations.domain.GetLocationsUseCase
 import pl.pionas.kotlinaplication.features.locations.domain.model.Location
 import pl.pionas.kotlinaplication.features.locations.presentation.model.LocationDisplayable
 
-class LocationViewModel(private val getLocationsUseCase: GetLocationsUseCase) : BaseViewModel() {
+public class LocationViewModel(
+    private val getLocationsUseCase: GetLocationsUseCase
+) : BaseViewModel() {
     private val _locations by lazy {
         MutableLiveData<List<Location>>()
             .also {

@@ -5,6 +5,7 @@ import org.koin.dsl.module
 import pl.pionas.kotlinaplication.features.locations.data.repository.LocationRepository
 import pl.pionas.kotlinaplication.features.locations.data.repository.LocationRepositoryImpl
 import pl.pionas.kotlinaplication.features.locations.domain.GetLocationsUseCase
+import pl.pionas.kotlinaplication.features.locations.presentation.LocationAdapter
 import pl.pionas.kotlinaplication.features.locations.presentation.LocationFragment
 import pl.pionas.kotlinaplication.features.locations.presentation.LocationViewModel
 
@@ -23,4 +24,5 @@ val locationModule = module {
     // presentation
     viewModel { LocationViewModel(get()) }
     factory { LocationFragment() }
+    factory { LocationAdapter() }
 }
