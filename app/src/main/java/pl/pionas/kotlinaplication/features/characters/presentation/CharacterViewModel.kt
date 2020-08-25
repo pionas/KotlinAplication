@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.map
 import androidx.lifecycle.viewModelScope
 import pl.pionas.kotlinaplication.core.base.BaseViewModel
+import pl.pionas.kotlinaplication.core.exception.ErrorMapper
 import pl.pionas.kotlinaplication.features.characters.domain.GetCharactersUseCase
 import pl.pionas.kotlinaplication.features.characters.domain.model.Character
 import pl.pionas.kotlinaplication.features.characters.presentation.model.CharacterDisplayable
@@ -14,8 +15,9 @@ import pl.pionas.kotlinaplication.features.characters.presentation.model.Charact
  * adrian@pionka.com
  */
 class CharacterViewModel(
-    private val getCharactersUseCase: GetCharactersUseCase
-) : BaseViewModel() {
+    private val getCharactersUseCase: GetCharactersUseCase,
+    errorMapper: ErrorMapper
+) : BaseViewModel(errorMapper) {
     private val _characters by lazy {
         MutableLiveData<List<Character>>()
             .also {

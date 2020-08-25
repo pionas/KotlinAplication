@@ -8,6 +8,7 @@ import io.mockk.verify
 import org.amshove.kluent.shouldBe
 import org.junit.jupiter.api.Test
 import pl.pionas.kotlinaplication.core.base.UiState
+import pl.pionas.kotlinaplication.core.exception.ErrorMapper
 import pl.pionas.kotlinaplication.features.locations.domain.GetLocationsUseCase
 import pl.pionas.kotlinaplication.features.locations.domain.model.Location
 import pl.pionas.kotlinaplication.mock.mock
@@ -24,7 +25,8 @@ internal class LocationViewModelTest : ViewModelTest() {
     fun `WHEN location live data is observed THEN set pending state`() {
         // given
         val useCase = mockk<GetLocationsUseCase>(relaxed = true)
-        val viewModel = LocationViewModel(useCase)
+        val errorMapper = mockk<ErrorMapper>()
+        val viewModel = LocationViewModel(useCase, errorMapper)
 
         // when
         viewModel.locations.observeForTesting()
@@ -37,7 +39,8 @@ internal class LocationViewModelTest : ViewModelTest() {
     fun `WHEN location live data is observed THEN invoke use case to get locations`() {
         // given
         val useCase = mockk<GetLocationsUseCase>(relaxed = true)
-        val viewModel = LocationViewModel(useCase)
+        val errorMapper = mockk<ErrorMapper>()
+        val viewModel = LocationViewModel(useCase, errorMapper)
 
         // when
         viewModel.locations.observeForTesting()
@@ -55,7 +58,8 @@ internal class LocationViewModelTest : ViewModelTest() {
                 lastArg<(Result<List<Location>>) -> Unit>()(Result.success(locations))
             }
         }
-        val viewModel = LocationViewModel(useCase)
+        val errorMapper = mockk<ErrorMapper>()
+        val viewModel = LocationViewModel(useCase, errorMapper)
 
         // when
         viewModel.locations.observeForTesting()
@@ -80,7 +84,8 @@ internal class LocationViewModelTest : ViewModelTest() {
             }
         }
         val observer = mockk<Observer<String>>(relaxed = true)
-        val viewModel = LocationViewModel(useCase)
+        val errorMapper = mockk<ErrorMapper>()
+        val viewModel = LocationViewModel(useCase, errorMapper)
 
         // when
         viewModel.message.observeForever(observer)

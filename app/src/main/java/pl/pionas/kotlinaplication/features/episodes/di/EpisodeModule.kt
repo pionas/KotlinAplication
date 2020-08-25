@@ -16,13 +16,13 @@ import pl.pionas.kotlinaplication.features.episodes.presentation.EpisodeViewMode
 
 val episodeModule = module {
     // data
-    factory<EpisodeRepository> { EpisodeRepositoryImpl(get(), get(), get()) }
+    factory<EpisodeRepository> { EpisodeRepositoryImpl(get(), get(), get(), get()) }
 
     // domain
     factory { GetEpisodesUseCase(get()) }
 
     // presentation
-    viewModel { EpisodeViewModel(get()) }
+    viewModel { EpisodeViewModel(get(), get()) }
     factory { EpisodeFragment() }
     factory { EpisodeAdapter() }
 }

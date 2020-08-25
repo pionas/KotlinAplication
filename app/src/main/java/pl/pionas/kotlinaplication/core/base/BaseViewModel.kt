@@ -5,12 +5,14 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.hadilq.liveevent.LiveEvent
+import pl.pionas.kotlinaplication.core.exception.ErrorMapper
 
 /**
  * Created by Adrian Pionka on 24 sierpień 2020
  * adrian@pionka.com
  */
-open class BaseViewModel : ViewModel(), DefaultLifecycleObserver {
+open class BaseViewModel(private val errorMapper: ErrorMapper) : ViewModel(),
+    DefaultLifecycleObserver {
     private val _message by lazy { LiveEvent<String>() }
 
     val message: LiveEvent<String> = _message
@@ -32,6 +34,7 @@ open class BaseViewModel : ViewModel(), DefaultLifecycleObserver {
     }
 
     protected fun handleFailure(throwable: Throwable) {
-        throwable.message?.let { showMessage(it) }
+        val errorMessage = errorMapper.map(throwable)
+        showMessage(errorMessage)
     }
 }

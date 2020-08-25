@@ -8,6 +8,7 @@ import io.mockk.verify
 import org.amshove.kluent.shouldBe
 import org.junit.jupiter.api.Test
 import pl.pionas.kotlinaplication.core.base.UiState
+import pl.pionas.kotlinaplication.core.exception.ErrorMapper
 import pl.pionas.kotlinaplication.features.episodes.domain.GetEpisodesUseCase
 import pl.pionas.kotlinaplication.features.episodes.domain.model.Episode
 import pl.pionas.kotlinaplication.mock.mock
@@ -24,7 +25,8 @@ internal class EpisodeViewModelTest : ViewModelTest() {
     fun `WHEN episode live data is observed THEN set pending state`() {
         // given
         val useCase = mockk<GetEpisodesUseCase>(relaxed = true)
-        val viewModel = EpisodeViewModel(useCase)
+        val errorMapper = mockk<ErrorMapper>()
+        val viewModel = EpisodeViewModel(useCase, errorMapper)
 
         // when
         viewModel.episodes.observeForTesting()
@@ -37,7 +39,8 @@ internal class EpisodeViewModelTest : ViewModelTest() {
     fun `WHEN episode live data is observed THEN invoke use case to get episodes`() {
         // given
         val useCase = mockk<GetEpisodesUseCase>(relaxed = true)
-        val viewModel = EpisodeViewModel(useCase)
+        val errorMapper = mockk<ErrorMapper>()
+        val viewModel = EpisodeViewModel(useCase, errorMapper)
 
         // when
         viewModel.episodes.observeForTesting()
@@ -55,7 +58,8 @@ internal class EpisodeViewModelTest : ViewModelTest() {
                 lastArg<(Result<List<Episode>>) -> Unit>()(Result.success(episodes))
             }
         }
-        val viewModel = EpisodeViewModel(useCase)
+        val errorMapper = mockk<ErrorMapper>()
+        val viewModel = EpisodeViewModel(useCase, errorMapper)
 
         // when
         viewModel.episodes.observeForTesting()
@@ -80,7 +84,8 @@ internal class EpisodeViewModelTest : ViewModelTest() {
             }
         }
         val observer = mockk<Observer<String>>(relaxed = true)
-        val viewModel = EpisodeViewModel(useCase)
+        val errorMapper = mockk<ErrorMapper>()
+        val viewModel = EpisodeViewModel(useCase, errorMapper)
 
         // when
         viewModel.message.observeForever(observer)

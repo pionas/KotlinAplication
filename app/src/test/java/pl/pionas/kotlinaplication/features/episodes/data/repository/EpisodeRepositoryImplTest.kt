@@ -7,6 +7,7 @@ import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Test
 import pl.pionas.kotlinaplication.core.api.RickAndMortyApi
 import pl.pionas.kotlinaplication.core.api.model.EpisodesResponse
+import pl.pionas.kotlinaplication.core.exception.ErrorWrapper
 import pl.pionas.kotlinaplication.core.network.NetworkStateProvider
 import pl.pionas.kotlinaplication.features.episodes.data.local.EpisodeDao
 import pl.pionas.kotlinaplication.features.episodes.data.local.model.EpisodeCached
@@ -27,9 +28,10 @@ internal class EpisodeRepositoryImplTest {
         val networkStateProvider = mockk<NetworkStateProvider> {
             coEvery { isNetworkAvailable() } returns true
         }
+        val errorWrapper = mockk<ErrorWrapper>()
 
         val repository: EpisodeRepository =
-            EpisodeRepositoryImpl(api, episodeDao, networkStateProvider)
+            EpisodeRepositoryImpl(api, episodeDao, networkStateProvider, errorWrapper)
 
         // when
         runBlocking { repository.getEpisodes() }
@@ -48,9 +50,10 @@ internal class EpisodeRepositoryImplTest {
         val networkStateProvider = mockk<NetworkStateProvider> {
             coEvery { isNetworkAvailable() } returns true
         }
+        val errorWrapper = mockk<ErrorWrapper>()
 
         val repository: EpisodeRepository =
-            EpisodeRepositoryImpl(api, episodeDao, networkStateProvider)
+            EpisodeRepositoryImpl(api, episodeDao, networkStateProvider, errorWrapper)
 
         // when
         runBlocking { repository.getEpisodes() }
@@ -69,9 +72,10 @@ internal class EpisodeRepositoryImplTest {
         val networkStateProvider = mockk<NetworkStateProvider> {
             coEvery { isNetworkAvailable() } returns false
         }
+        val errorWrapper = mockk<ErrorWrapper>()
 
         val repository: EpisodeRepository =
-            EpisodeRepositoryImpl(api, episodeDao, networkStateProvider)
+            EpisodeRepositoryImpl(api, episodeDao, networkStateProvider, errorWrapper)
 
         // when
         runBlocking { repository.getEpisodes() }

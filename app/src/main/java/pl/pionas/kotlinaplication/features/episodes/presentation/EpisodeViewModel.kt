@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.map
 import androidx.lifecycle.viewModelScope
 import pl.pionas.kotlinaplication.core.base.BaseViewModel
+import pl.pionas.kotlinaplication.core.exception.ErrorMapper
 import pl.pionas.kotlinaplication.features.episodes.domain.GetEpisodesUseCase
 import pl.pionas.kotlinaplication.features.episodes.domain.model.Episode
 import pl.pionas.kotlinaplication.features.episodes.presentation.model.EpisodeDisplayable
@@ -14,8 +15,9 @@ import pl.pionas.kotlinaplication.features.episodes.presentation.model.EpisodeDi
  * adrian@pionka.com
  */
 class EpisodeViewModel(
-    private val getEpisodesUseCase: GetEpisodesUseCase
-) : BaseViewModel() {
+    private val getEpisodesUseCase: GetEpisodesUseCase,
+    errorMapper: ErrorMapper
+) : BaseViewModel(errorMapper) {
     private val _episodes by lazy {
         MutableLiveData<List<Episode>>()
             .also {

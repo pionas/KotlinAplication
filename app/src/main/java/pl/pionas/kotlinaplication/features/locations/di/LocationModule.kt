@@ -16,13 +16,13 @@ import pl.pionas.kotlinaplication.features.locations.presentation.LocationViewMo
 
 val locationModule = module {
     // data
-    factory<LocationRepository> { LocationRepositoryImpl(get(), get(), get()) }
+    factory<LocationRepository> { LocationRepositoryImpl(get(), get(), get(), get()) }
 
     // domain
     factory { GetLocationsUseCase(get()) }
 
     // presentation
-    viewModel { LocationViewModel(get()) }
+    viewModel { LocationViewModel(get(), get()) }
     factory { LocationFragment() }
     factory { LocationAdapter() }
 }

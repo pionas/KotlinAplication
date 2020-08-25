@@ -1,6 +1,8 @@
 package pl.pionas.kotlinaplication.features.characters.data.repository
 
 import pl.pionas.kotlinaplication.core.api.RickAndMortyApi
+import pl.pionas.kotlinaplication.core.exception.ErrorWrapper
+import pl.pionas.kotlinaplication.core.exception.callOrThrow
 import pl.pionas.kotlinaplication.core.network.NetworkStateProvider
 import pl.pionas.kotlinaplication.features.characters.data.local.CharacterDao
 import pl.pionas.kotlinaplication.features.characters.data.local.model.CharacterCached
@@ -13,12 +15,14 @@ import pl.pionas.kotlinaplication.features.characters.domain.model.Character
 class CharacterRepositoryImpl(
     private val rickAndMortyApi: RickAndMortyApi,
     private val characterDao: CharacterDao,
-    private val networkStateProvider: NetworkStateProvider
+    private val networkStateProvider: NetworkStateProvider,
+    private val errorWrapper: ErrorWrapper
 ) : CharacterRepository {
     override suspend fun getCharacters(): List<Character> {
         return if (networkStateProvider.isNetworkAvailable()) {
-            getCharactersFromRemote()
-                .also { saveCharactersToLocal(it) }
+            callOrThrow(errorWrapper) {
+                getCharactersFromRemote()
+            }.also { saveCharactersToLocal(it) }
         } else {
             getCharactersFromLocal()
         }
@@ -40,4 +44,5 @@ class CharacterRepositoryImpl(
         return characterDao.getCharacters()
             .map { it.toCharacter() }
     }
+
 }
