@@ -82,7 +82,9 @@ internal class LocationViewModelTest : ViewModelTest() {
             }
         }
         val observer = mockk<Observer<String>>(relaxed = true)
-        val errorMapper = mockk<ErrorMapper>()
+        val errorMapper = mockk<ErrorMapper> {
+            every { map(any()) } returns "Ops... Something went wrong"
+        }
         val viewModel = LocationViewModel(useCase, errorMapper)
 
         // when

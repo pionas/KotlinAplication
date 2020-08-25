@@ -84,7 +84,9 @@ internal class EpisodeViewModelTest : ViewModelTest() {
             }
         }
         val observer = mockk<Observer<String>>(relaxed = true)
-        val errorMapper = mockk<ErrorMapper>()
+        val errorMapper = mockk<ErrorMapper> {
+            every { map(any()) } returns "Ops... Something went wrong"
+        }
         val viewModel = EpisodeViewModel(useCase, errorMapper)
 
         // when
