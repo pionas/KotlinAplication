@@ -13,7 +13,9 @@ import pl.pionas.kotlinaplication.features.episodes.presentation.model.EpisodeDi
  * Created by Adrian Pionka on 24 sierpień 2020
  * adrian@pionka.com
  */
-class EpisodeViewModel(private val getEpisodesUseCase: GetEpisodesUseCase) : BaseViewModel() {
+class EpisodeViewModel(
+    private val getEpisodesUseCase: GetEpisodesUseCase
+) : BaseViewModel() {
     private val _episodes by lazy {
         MutableLiveData<List<Episode>>()
             .also {
