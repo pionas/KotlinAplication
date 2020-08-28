@@ -5,8 +5,13 @@ import android.net.ConnectivityManager
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
+import pl.pionas.kotlinaplication.core.exception.ErrorMapper
+import pl.pionas.kotlinaplication.core.exception.ErrorMapperImpl
+import pl.pionas.kotlinaplication.core.exception.ErrorWrapper
+import pl.pionas.kotlinaplication.core.exception.ErrorWrapperImpl
 import pl.pionas.kotlinaplication.core.network.NetworkStateProvider
 import pl.pionas.kotlinaplication.core.network.NetworkStateProviderImpl
 
@@ -25,6 +30,13 @@ val appModule = module {
     single {
         DividerItemDecoration(get(), LinearLayoutManager.VERTICAL)
     }
+    single<ErrorWrapper> {
+        ErrorWrapperImpl()
+    }
+    single<ErrorMapper> {
+        ErrorMapperImpl(get())
+    }
+    factory<RecyclerView.LayoutManager> { GridLayoutManager(androidContext(), 1) }
     factory { androidContext().getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager }
     factory<NetworkStateProvider> { NetworkStateProviderImpl(get()) }
 }

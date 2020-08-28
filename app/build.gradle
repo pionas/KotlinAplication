@@ -48,9 +48,11 @@ dependencies {
     implementation lifecycleDependencies.values()
     implementation networkDependencies.values()
     implementation roomImplementation.values()
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     kapt roomKapt.values()
 
     testImplementation mockkDependencies.values()
     testImplementation jupiterDependencies.values()
+    testImplementation kluentDependencies.values()
 
 }

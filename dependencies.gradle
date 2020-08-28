@@ -75,4 +75,9 @@ ext {
             jupiter: "org.junit.jupiter:junit-jupiter-api:" + jupiterVersion
     ]
 
+    def kluentVersion = "1.61"
+    kluentDependencies = [
+            kluent: "org.amshove.kluent:kluent-android:" + kluentVersion
+    ]
+
 }

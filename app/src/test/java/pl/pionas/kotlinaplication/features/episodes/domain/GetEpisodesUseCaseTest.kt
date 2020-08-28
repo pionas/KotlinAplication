@@ -4,7 +4,7 @@ import io.mockk.coVerify
 import io.mockk.mockk
 import kotlinx.coroutines.GlobalScope
 import org.junit.jupiter.api.Test
-import pl.pionas.kotlinaplication.features.episodes.EpisodeRepository
+import pl.pionas.kotlinaplication.features.episodes.data.repository.EpisodeRepository
 
 
 /**

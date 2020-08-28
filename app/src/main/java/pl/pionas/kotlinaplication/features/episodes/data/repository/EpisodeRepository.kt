@@ -1,4 +1,4 @@
-package pl.pionas.kotlinaplication.features.episodes
+package pl.pionas.kotlinaplication.features.episodes.data.repository
 
 import pl.pionas.kotlinaplication.features.episodes.domain.model.Episode
 

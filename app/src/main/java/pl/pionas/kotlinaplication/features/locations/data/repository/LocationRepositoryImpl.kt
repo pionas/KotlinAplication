@@ -1,8 +1,9 @@
 package pl.pionas.kotlinaplication.features.locations.data.repository
 
 import pl.pionas.kotlinaplication.core.api.RickAndMortyApi
+import pl.pionas.kotlinaplication.core.exception.ErrorWrapper
+import pl.pionas.kotlinaplication.core.exception.callOrThrow
 import pl.pionas.kotlinaplication.core.network.NetworkStateProvider
-import pl.pionas.kotlinaplication.features.locations.LocationRepository
 import pl.pionas.kotlinaplication.features.locations.data.local.LocationDao
 import pl.pionas.kotlinaplication.features.locations.data.local.model.LocationCached
 import pl.pionas.kotlinaplication.features.locations.domain.model.Location
@@ -14,12 +15,14 @@ import pl.pionas.kotlinaplication.features.locations.domain.model.Location
 class LocationRepositoryImpl(
     private val rickAndMortyApi: RickAndMortyApi,
     private val locationDao: LocationDao,
-    private val networkStateProvider: NetworkStateProvider
+    private val networkStateProvider: NetworkStateProvider,
+    private val errorWrapper: ErrorWrapper
 ) : LocationRepository {
     override suspend fun getLocations(): List<Location> {
         return if (networkStateProvider.isNetworkAvailable()) {
-            getEpisodesFromRemote()
-                .also { saveEpisodesToLocal(it) }
+            callOrThrow(errorWrapper) {
+                getEpisodesFromRemote()
+            }.also { saveEpisodesToLocal(it) }
         } else {
             getEpisodesFromLocal()
         }

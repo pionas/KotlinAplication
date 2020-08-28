@@ -7,8 +7,7 @@ import org.koin.core.module.Module
  * adrian@pionka.com
  */
 
-val koinInjector: List<Module> = listOf(
-    networkModule,
-    databaseModule,
-    appModule
-)
+val koinInjector: List<Module> = featureModules
+    .plus(networkModule)
+    .plus(databaseModule)
+    .plus(appModule)

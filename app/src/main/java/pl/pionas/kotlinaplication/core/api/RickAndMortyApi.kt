@@ -11,7 +11,7 @@ import retrofit2.http.GET
  */
 interface RickAndMortyApi {
 
-    @GET("episodes")
+    @GET("episode")
     suspend fun getEpisodes(): EpisodesResponse
 
     @GET("character")
