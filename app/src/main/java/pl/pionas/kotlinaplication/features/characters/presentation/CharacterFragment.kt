@@ -1,5 +1,6 @@
 package pl.pionas.kotlinaplication.features.characters.presentation
 
+import android.view.View
 import androidx.lifecycle.observe
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.fragment_location.*
@@ -33,12 +34,14 @@ class CharacterFragment : BaseFragment<CharacterViewModel>(R.layout.fragment_cha
 
     override fun onIdleStatus() {
         super.onIdleStatus()
-        // handle idle state here
+        progressBarLoading.visibility = View.GONE
+        recyclerView.visibility = View.VISIBLE
     }
 
     override fun onPendingState() {
         super.onPendingState()
-        // handle pending state here
+        progressBarLoading.visibility = View.VISIBLE
+        recyclerView.visibility = View.GONE
     }
 
     private fun observeCharacters() {
