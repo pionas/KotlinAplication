@@ -5,8 +5,8 @@ import org.koin.dsl.module
 import pl.pionas.kotlinaplication.features.users.domain.GetAuthUseCase
 import pl.pionas.kotlinaplication.features.users.login.presentation.LoginFragment
 import pl.pionas.kotlinaplication.features.users.login.presentation.LoginViewModel
-import pl.pionas.kotlinaplication.features.users.login.repository.AuthRepository
-import pl.pionas.kotlinaplication.features.users.login.repository.AuthRepositoryImpl
+import pl.pionas.kotlinaplication.features.users.login.repository.LoginRepository
+import pl.pionas.kotlinaplication.features.users.login.repository.LoginRepositoryImpl
 
 /**
  * Created by Adrian Pionka on 31 sierpień 2020
@@ -15,7 +15,7 @@ import pl.pionas.kotlinaplication.features.users.login.repository.AuthRepository
 
 val userModule = module {
     // data
-    factory<AuthRepository> { AuthRepositoryImpl(get(), get(), get()) }
+    factory<LoginRepository> { LoginRepositoryImpl(get(), get(), get()) }
 
     // domain
     factory { GetAuthUseCase(get()) }

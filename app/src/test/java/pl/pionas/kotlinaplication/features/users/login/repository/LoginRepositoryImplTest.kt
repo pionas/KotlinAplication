@@ -22,7 +22,7 @@ import pl.pionas.kotlinaplication.utils.observeForTesting
  * Created by Adrian Pionka on 31 sierpień 2020
  * adrian@pionka.com
  */
-internal class AuthRepositoryImplTest {
+internal class LoginRepositoryImplTest {
     @Test
     fun `GIVEN network is connected WHEN auth request THEN fetch user from API`() {
         val user = User("username", "password")
@@ -35,8 +35,8 @@ internal class AuthRepositoryImplTest {
         }
         val errorWrapper = mockk<ErrorWrapper>()
 
-        val repository: AuthRepository =
-            AuthRepositoryImpl(api, networkStateProvider, errorWrapper)
+        val repository: LoginRepository =
+            LoginRepositoryImpl(api, networkStateProvider, errorWrapper)
 
         // when
         runBlocking { repository.login(user) }

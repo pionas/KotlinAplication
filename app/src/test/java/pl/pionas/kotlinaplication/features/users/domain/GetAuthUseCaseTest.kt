@@ -5,7 +5,7 @@ import io.mockk.mockk
 import kotlinx.coroutines.GlobalScope
 import org.junit.jupiter.api.Test
 import pl.pionas.kotlinaplication.features.users.domain.model.User
-import pl.pionas.kotlinaplication.features.users.login.repository.AuthRepository
+import pl.pionas.kotlinaplication.features.users.login.repository.LoginRepository
 
 /**
  * Created by Adrian Pionka on 31 sierpień 2020
@@ -17,7 +17,7 @@ internal class GetAuthUseCaseTest {
     fun `when use case is invoked than execute login method from repository`() {
         // given
         val user = User("username", "password")
-        val repository = mockk<AuthRepository>(relaxed = true)
+        val repository = mockk<LoginRepository>(relaxed = true)
         val useCase = GetAuthUseCase(repository)
 
         // when

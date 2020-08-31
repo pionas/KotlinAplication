@@ -9,4 +9,6 @@
     <string name="login">Login</string>
     <string name="username">Username</string>
     <string name="password">Password</string>
+    <string name="username_cant_be_empty">Username can\'t be empty!</string>
+    <string name="password_cant_be_too_short">Password must contain at least 4 characters!</string>
 </resources>
