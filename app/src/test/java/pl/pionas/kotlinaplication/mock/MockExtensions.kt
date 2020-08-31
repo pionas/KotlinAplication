@@ -9,6 +9,7 @@ import pl.pionas.kotlinaplication.features.episodes.data.local.model.EpisodeCach
 import pl.pionas.kotlinaplication.features.episodes.domain.model.Episode
 import pl.pionas.kotlinaplication.features.locations.data.local.model.LocationCached
 import pl.pionas.kotlinaplication.features.locations.domain.model.Location
+import pl.pionas.kotlinaplication.features.users.domain.model.User
 
 /**
  * Created by Adrian Pionka on 21 sierpień 2020
@@ -153,4 +154,18 @@ fun Character.Companion.mock() = Character(
     image = "character image",
     episode = emptyList(),
     url = "character url"
+)
+
+fun UserResponse.Companion.mock() = UserResponse(
+    info = ResponseInfo.mock(),
+    results = User.mock()
+)
+
+@TestOnly
+fun User.Companion.mock() = User(
+    id = 1,
+    name = "user name",
+    username = "user username",
+    password = "user password",
+    email = "user email"
 )
