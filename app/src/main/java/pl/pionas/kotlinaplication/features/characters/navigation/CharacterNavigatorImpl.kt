@@ -15,7 +15,7 @@ class CharacterNavigatorImpl(private val fragmentNavigator: FragmentNavigator) :
     CharacterNavigator {
     override fun openCharacterDetailsScreen(character: CharacterDisplayable) {
         fragmentNavigator.navigateTo(
-            R.id.action_navigate_from_episodes_screen_to_episode_details_screen,
+            R.id.action_navigate_from_characters_screen_to_character_details_screen,
             CharacterDetailsFragment.CHARACTER_DETAILS_KEY to character
         )
     }
