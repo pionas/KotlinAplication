@@ -9,6 +9,7 @@ import pl.pionas.kotlinaplication.features.characters.domain.model.Origin
 import pl.pionas.kotlinaplication.features.episodes.all.presentation.model.EpisodeDisplayable
 import pl.pionas.kotlinaplication.features.episodes.data.local.model.EpisodeCached
 import pl.pionas.kotlinaplication.features.episodes.domain.model.Episode
+import pl.pionas.kotlinaplication.features.locations.all.presentation.model.LocationDisplayable
 import pl.pionas.kotlinaplication.features.locations.data.local.model.LocationCached
 import pl.pionas.kotlinaplication.features.locations.domain.model.Location
 import pl.pionas.kotlinaplication.features.users.domain.model.User
@@ -100,6 +101,12 @@ fun LocationCached.Companion.mock() = LocationCached(
 
 @TestOnly
 fun Location.Companion.mock() = Location(
+    name = "location name",
+    url = "location url"
+)
+
+@TestOnly
+fun LocationDisplayable.Companion.mock() = LocationDisplayable(
     name = "location name",
     url = "location url"
 )

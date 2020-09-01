@@ -1,4 +1,4 @@
-package pl.pionas.kotlinaplication.features.locations.presentation
+package pl.pionas.kotlinaplication.features.locations.all.presentation
 
 import androidx.lifecycle.Observer
 import androidx.lifecycle.viewModelScope
@@ -11,6 +11,7 @@ import pl.pionas.kotlinaplication.core.base.UiState
 import pl.pionas.kotlinaplication.core.exception.ErrorMapper
 import pl.pionas.kotlinaplication.features.locations.domain.GetLocationsUseCase
 import pl.pionas.kotlinaplication.features.locations.domain.model.Location
+import pl.pionas.kotlinaplication.features.locations.navigation.LocationNavigator
 import pl.pionas.kotlinaplication.mock.mock
 import pl.pionas.kotlinaplication.utils.ViewModelTest
 import pl.pionas.kotlinaplication.utils.getOrAwaitValue
@@ -20,13 +21,14 @@ import pl.pionas.kotlinaplication.utils.observeForTesting
  * Created by Adrian Pionka on 24 sierpień 2020
  * adrian@pionka.com
  */
-internal class LocationViewModelTest : ViewModelTest() {
+internal class LocationsViewModelTest : ViewModelTest() {
     @Test
     fun `WHEN location live data is observed THEN set pending state`() {
         // given
         val useCase = mockk<GetLocationsUseCase>(relaxed = true)
+        val locationNavigator = mockk<LocationNavigator>(relaxed = true)
         val errorMapper = mockk<ErrorMapper>()
-        val viewModel = LocationViewModel(useCase, errorMapper)
+        val viewModel = LocationsViewModel(useCase, locationNavigator, errorMapper)
 
         // when
         viewModel.locations.observeForTesting()
@@ -39,8 +41,9 @@ internal class LocationViewModelTest : ViewModelTest() {
     fun `WHEN location live data is observed THEN invoke use case to get locations`() {
         // given
         val useCase = mockk<GetLocationsUseCase>(relaxed = true)
+        val locationNavigator = mockk<LocationNavigator>(relaxed = true)
         val errorMapper = mockk<ErrorMapper>()
-        val viewModel = LocationViewModel(useCase, errorMapper)
+        val viewModel = LocationsViewModel(useCase, locationNavigator, errorMapper)
 
         // when
         viewModel.locations.observeForTesting()
@@ -58,8 +61,9 @@ internal class LocationViewModelTest : ViewModelTest() {
                 lastArg<(Result<List<Location>>) -> Unit>()(Result.success(locations))
             }
         }
+        val locationNavigator = mockk<LocationNavigator>(relaxed = true)
         val errorMapper = mockk<ErrorMapper>()
-        val viewModel = LocationViewModel(useCase, errorMapper)
+        val viewModel = LocationsViewModel(useCase, locationNavigator, errorMapper)
 
         // when
         viewModel.locations.observeForTesting()
@@ -85,7 +89,8 @@ internal class LocationViewModelTest : ViewModelTest() {
         val errorMapper = mockk<ErrorMapper> {
             every { map(any()) } returns "Ops... Something went wrong"
         }
-        val viewModel = LocationViewModel(useCase, errorMapper)
+        val locationNavigator = mockk<LocationNavigator>(relaxed = true)
+        val viewModel = LocationsViewModel(useCase, locationNavigator, errorMapper)
 
         // when
         viewModel.message.observeForever(observer)

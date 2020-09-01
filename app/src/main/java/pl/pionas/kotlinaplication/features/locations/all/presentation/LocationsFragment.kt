@@ -1,30 +1,36 @@
-package pl.pionas.kotlinaplication.features.locations.presentation
+package pl.pionas.kotlinaplication.features.locations.all.presentation
 
 import android.view.View
 import androidx.lifecycle.observe
-import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_location.*
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import pl.pionas.kotlinaplication.R
 import pl.pionas.kotlinaplication.core.base.BaseFragment
-import pl.pionas.kotlinaplication.features.locations.presentation.model.LocationDisplayable
+import pl.pionas.kotlinaplication.features.locations.all.presentation.model.LocationDisplayable
 
-class LocationFragment : BaseFragment<LocationViewModel>(R.layout.fragment_location) {
+class LocationsFragment : BaseFragment<LocationsViewModel>(R.layout.fragment_location) {
 
-    override val viewModel: LocationViewModel by viewModel()
-    private val adapter: LocationAdapter by inject()
-    private val layoutManager: RecyclerView.LayoutManager by inject()
+    override val viewModel: LocationsViewModel by viewModel()
+
+    private val linearLayoutManager: LinearLayoutManager by inject()
+    private val divider: DividerItemDecoration by inject()
+    private val locationAdapter: LocationsAdapter by inject()
 
     override fun initViews() {
         super.initViews()
-        // initialize all view-related classes
         initRecycler()
     }
 
     private fun initRecycler() {
-        recyclerView.layoutManager = layoutManager
-        recyclerView.adapter = adapter
+        with(recyclerView) {
+            layoutManager = linearLayoutManager
+            addItemDecoration(divider)
+            setHasFixedSize(true)
+            adapter = locationAdapter
+        }
     }
 
     override fun initObservers() {
@@ -44,6 +50,14 @@ class LocationFragment : BaseFragment<LocationViewModel>(R.layout.fragment_locat
         recyclerView.visibility = View.GONE
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        with(recyclerView) {
+            layoutManager = null
+            adapter = null
+        }
+    }
+
     private fun observeLocations() {
         viewModel.locations.observe(this) {
             setLocations(it)
@@ -51,7 +65,7 @@ class LocationFragment : BaseFragment<LocationViewModel>(R.layout.fragment_locat
     }
 
     private fun setLocations(locations: List<LocationDisplayable>) {
-        adapter.setItems(locations)
+        locationAdapter.setItems(locations)
     }
 
 }
