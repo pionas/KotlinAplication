@@ -7,6 +7,7 @@ import pl.pionas.kotlinaplication.features.episodes.all.presentation.EpisodesFra
 import pl.pionas.kotlinaplication.features.episodes.all.presentation.EpisodesViewModel
 import pl.pionas.kotlinaplication.features.episodes.data.repository.EpisodeRepository
 import pl.pionas.kotlinaplication.features.episodes.data.repository.EpisodeRepositoryImpl
+import pl.pionas.kotlinaplication.features.episodes.details.presentation.EpisodeViewModel
 import pl.pionas.kotlinaplication.features.episodes.domain.GetEpisodesUseCase
 import pl.pionas.kotlinaplication.features.episodes.navigation.EpisodeNavigator
 import pl.pionas.kotlinaplication.features.episodes.navigation.EpisodeNavigatorImpl
@@ -28,4 +29,5 @@ val episodeModule = module {
     viewModel { EpisodesViewModel(get(), get(), get()) }
     factory { EpisodesFragment() }
     factory { EpisodesAdapter(get()) }
+    viewModel { EpisodeViewModel() }
 }

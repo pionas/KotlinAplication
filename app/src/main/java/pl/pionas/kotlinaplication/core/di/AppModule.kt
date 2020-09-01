@@ -6,7 +6,6 @@ import androidx.navigation.navOptions
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import org.koin.android.ext.koin.androidApplication
 import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
@@ -27,13 +26,13 @@ import pl.pionas.kotlinaplication.core.provider.ActivityProvider
  */
 
 val appModule = module {
-    single {
+    factory {
         LinearLayoutManager(get())
     }
     single {
         GridLayoutManager(get(), 2)
     }
-    single {
+    factory {
         DividerItemDecoration(get(), LinearLayoutManager.VERTICAL)
     }
     single<ErrorWrapper> {
@@ -42,7 +41,6 @@ val appModule = module {
     single<ErrorMapper> {
         ErrorMapperImpl(get())
     }
-    factory<RecyclerView.LayoutManager> { GridLayoutManager(androidContext(), 1) }
     factory { androidContext().getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager }
     factory<NetworkStateProvider> { NetworkStateProviderImpl(get()) }
     single(createdAtStart = true) { ActivityProvider(androidApplication()) }

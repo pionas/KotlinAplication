@@ -7,6 +7,7 @@ import pl.pionas.kotlinaplication.features.locations.all.presentation.LocationsF
 import pl.pionas.kotlinaplication.features.locations.all.presentation.LocationsViewModel
 import pl.pionas.kotlinaplication.features.locations.data.repository.LocationRepository
 import pl.pionas.kotlinaplication.features.locations.data.repository.LocationRepositoryImpl
+import pl.pionas.kotlinaplication.features.locations.details.presentation.LocationViewModel
 import pl.pionas.kotlinaplication.features.locations.domain.GetLocationsUseCase
 import pl.pionas.kotlinaplication.features.locations.navigation.LocationNavigator
 import pl.pionas.kotlinaplication.features.locations.navigation.LocationNavigatorImpl
@@ -28,4 +29,5 @@ val locationModule = module {
     viewModel { LocationsViewModel(get(), get(), get()) }
     factory { LocationsFragment() }
     factory { LocationsAdapter(get()) }
+    viewModel { LocationViewModel() }
 }

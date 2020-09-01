@@ -7,6 +7,7 @@ import pl.pionas.kotlinaplication.features.characters.all.presentation.Character
 import pl.pionas.kotlinaplication.features.characters.all.presentation.CharactersViewModel
 import pl.pionas.kotlinaplication.features.characters.data.repository.CharacterRepository
 import pl.pionas.kotlinaplication.features.characters.data.repository.CharacterRepositoryImpl
+import pl.pionas.kotlinaplication.features.characters.details.presentation.CharacterViewModel
 import pl.pionas.kotlinaplication.features.characters.domain.GetCharactersUseCase
 import pl.pionas.kotlinaplication.features.characters.navigation.CharacterNavigator
 import pl.pionas.kotlinaplication.features.episodes.navigation.CharacterNavigatorImpl
@@ -28,4 +29,5 @@ val characterModule = module {
     viewModel { CharactersViewModel(get(), get(), get()) }
     factory { CharactersFragment() }
     factory { CharactersAdapter(get()) }
+    viewModel { CharacterViewModel() }
 }

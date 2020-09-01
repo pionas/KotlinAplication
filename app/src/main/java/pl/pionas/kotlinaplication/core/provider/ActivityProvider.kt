@@ -14,8 +14,8 @@ class ActivityProvider(application: Application) {
     init {
         application.registerActivityLifecycleCallbacks(object :
             Application.ActivityLifecycleCallbacks {
-            override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {
-
+            override fun onActivityCreated(activity: Activity, bundle: Bundle?) {
+                foregroundActivity = activity
             }
 
             override fun onActivityStarted(activity: Activity) {
@@ -34,12 +34,11 @@ class ActivityProvider(application: Application) {
 
             }
 
-            override fun onActivitySaveInstanceState(activity: Activity, outState: Bundle) {
+            override fun onActivitySaveInstanceState(activity: Activity, bundle: Bundle) {
 
             }
 
             override fun onActivityDestroyed(activity: Activity) {
-                foregroundActivity = activity
             }
 
         })
