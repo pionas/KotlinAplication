@@ -5,6 +5,7 @@ import pl.pionas.kotlinaplication.core.api.model.*
 import pl.pionas.kotlinaplication.features.characters.data.local.model.CharacterCached
 import pl.pionas.kotlinaplication.features.characters.domain.model.Character
 import pl.pionas.kotlinaplication.features.characters.domain.model.Origin
+import pl.pionas.kotlinaplication.features.episodes.all.presentation.model.EpisodeDisplayable
 import pl.pionas.kotlinaplication.features.episodes.data.local.model.EpisodeCached
 import pl.pionas.kotlinaplication.features.episodes.domain.model.Episode
 import pl.pionas.kotlinaplication.features.locations.data.local.model.LocationCached
@@ -57,6 +58,16 @@ fun EpisodeCached.Companion.mock() = EpisodeCached(
 
 @TestOnly
 fun Episode.Companion.mock() = Episode(
+    id = 1,
+    name = "episode name",
+    airDate = "episode airDate",
+    code = "episode code",
+    characters = emptyList(),
+    url = "episode url"
+)
+
+@TestOnly
+fun EpisodeDisplayable.Companion.mock() = EpisodeDisplayable(
     id = 1,
     name = "episode name",
     airDate = "episode airDate",

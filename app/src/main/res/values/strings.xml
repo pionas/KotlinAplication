@@ -11,4 +11,9 @@
     <string name="password">Password</string>
     <string name="username_cant_be_empty">Username can\'t be empty!</string>
     <string name="password_cant_be_too_short">Password must contain at least 4 characters!</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_characters">Characters</string>
+    <string name="title_episodes">Episodes</string>
+    <string name="title_locations">Locations</string>
+    <string name="title_episode_details">Episode details</string>
 </resources>
