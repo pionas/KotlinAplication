@@ -1,4 +1,4 @@
-package pl.pionas.kotlinaplication.features.characters.presentation.model
+package pl.pionas.kotlinaplication.features.characters.all.presentation.model
 
 import pl.pionas.kotlinaplication.features.characters.domain.model.Origin
 

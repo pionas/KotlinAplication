@@ -1,5 +1,7 @@
-package pl.pionas.kotlinaplication.features.characters.presentation.model
+package pl.pionas.kotlinaplication.features.characters.all.presentation.model
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
 import pl.pionas.kotlinaplication.features.characters.domain.model.Character
 import pl.pionas.kotlinaplication.features.characters.domain.model.Origin
 import pl.pionas.kotlinaplication.features.locations.domain.model.Location
@@ -8,6 +10,7 @@ import pl.pionas.kotlinaplication.features.locations.domain.model.Location
  * Created by Adrian Pionka on 27 lipiec 2020
  * adrian@pionka.com
  */
+@Parcelize
 data class CharacterDisplayable(
     val id: Int,
     val name: String,
@@ -20,7 +23,7 @@ data class CharacterDisplayable(
     val image: String,
     val episode: List<String>,
     val url: String
-) {
+) : Parcelable {
     constructor(character: Character) : this(
         id = character.id,
         name = character.name,
@@ -34,4 +37,6 @@ data class CharacterDisplayable(
         episode = character.episode,
         url = character.url
     )
+
+    companion object
 }
