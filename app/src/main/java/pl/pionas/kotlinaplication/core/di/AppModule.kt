@@ -29,16 +29,16 @@ val appModule = module {
     factory {
         LinearLayoutManager(get())
     }
-    single {
+    factory {
         GridLayoutManager(get(), 2)
     }
     factory {
         DividerItemDecoration(get(), LinearLayoutManager.VERTICAL)
     }
-    single<ErrorWrapper> {
+    factory<ErrorWrapper> {
         ErrorWrapperImpl()
     }
-    single<ErrorMapper> {
+    factory<ErrorMapper> {
         ErrorMapperImpl(get())
     }
     factory { androidContext().getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager }

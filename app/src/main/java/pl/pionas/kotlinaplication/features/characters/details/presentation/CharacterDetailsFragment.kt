@@ -29,10 +29,10 @@ class CharacterDetailsFragment :
 
     override fun initViews() {
         super.initViews()
-        setDefaultValue()
+        showCharacterDetails()
     }
 
-    private fun setDefaultValue() {
+    private fun showCharacterDetails() {
         mCharacterDisplayable?.let {
             textViewCharacterName.text = it.name
             textViewCharacterStatus.text = it.status

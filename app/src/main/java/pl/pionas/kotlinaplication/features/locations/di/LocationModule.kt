@@ -25,7 +25,7 @@ val locationModule = module {
     factory { GetLocationsUseCase(get()) }
 
     // presentation
-    single<LocationNavigator> { LocationNavigatorImpl(get()) }
+    factory<LocationNavigator> { LocationNavigatorImpl(get()) }
     viewModel { LocationsViewModel(get(), get(), get()) }
     factory { LocationsFragment() }
     factory { LocationsAdapter(get()) }

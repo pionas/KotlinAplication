@@ -28,10 +28,10 @@ class EpisodeDetailsFragment : BaseFragment<EpisodeViewModel>(R.layout.fragment_
 
     override fun initViews() {
         super.initViews()
-        setDefaultValue()
+        showEpisodeDetails()
     }
 
-    private fun setDefaultValue() {
+    private fun showEpisodeDetails() {
         mEpisodeDisplayable?.let {
             textViewEpisodeName.text = it.name
             textViewEpisodeAirDate.text = it.airDate

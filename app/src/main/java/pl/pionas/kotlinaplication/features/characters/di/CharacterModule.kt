@@ -25,7 +25,7 @@ val characterModule = module {
     factory { GetCharactersUseCase(get()) }
 
     // presentation
-    single<CharacterNavigator> { CharacterNavigatorImpl(get()) }
+    factory<CharacterNavigator> { CharacterNavigatorImpl(get()) }
     viewModel { CharactersViewModel(get(), get(), get()) }
     factory { CharactersFragment() }
     factory { CharactersAdapter(get()) }
