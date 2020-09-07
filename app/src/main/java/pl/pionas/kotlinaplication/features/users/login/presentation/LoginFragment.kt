@@ -1,19 +1,21 @@
 package pl.pionas.kotlinaplication.features.users.login.presentation
 
-import android.view.View
 import androidx.core.widget.doAfterTextChanged
 import androidx.lifecycle.observe
 import kotlinx.android.synthetic.main.fragment_login.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import pl.pionas.kotlinaplication.BR
 import pl.pionas.kotlinaplication.R
 import pl.pionas.kotlinaplication.core.base.BaseFragment
+import pl.pionas.kotlinaplication.databinding.FragmentLoginBinding
 import pl.pionas.kotlinaplication.features.users.presentation.model.UserDisplayable
 
-class LoginFragment : BaseFragment<LoginViewModel>(R.layout.fragment_login) {
+class LoginFragment :
+    BaseFragment<LoginViewModel, FragmentLoginBinding>(BR.viewModel, R.layout.fragment_login) {
 
     override val viewModel: LoginViewModel by viewModel()
-    override fun initViews() {
-        super.initViews()
+    override fun initViews(binding: FragmentLoginBinding) {
+        super.initViews(binding)
         buttonLogin.setOnClickListener {
             login()
         }
@@ -29,18 +31,6 @@ class LoginFragment : BaseFragment<LoginViewModel>(R.layout.fragment_login) {
         super.initObservers()
         observeLogin()
         observeFormState()
-    }
-
-    override fun onIdleStatus() {
-        super.onIdleStatus()
-        progressBarLoading.visibility = View.GONE
-        relativeLayoutForm.visibility = View.VISIBLE
-    }
-
-    override fun onPendingState() {
-        super.onPendingState()
-        progressBarLoading.visibility = View.VISIBLE
-        relativeLayoutForm.visibility = View.GONE
     }
 
     private fun observeLogin() {

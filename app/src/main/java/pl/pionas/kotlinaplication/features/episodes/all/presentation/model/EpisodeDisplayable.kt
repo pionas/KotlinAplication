@@ -1,6 +1,7 @@
 package pl.pionas.kotlinaplication.features.episodes.all.presentation.model
 
 import android.os.Parcelable
+import kotlinx.android.parcel.IgnoredOnParcel
 import kotlinx.android.parcel.Parcelize
 import pl.pionas.kotlinaplication.features.episodes.domain.model.Episode
 
@@ -25,6 +26,9 @@ data class EpisodeDisplayable(
         characters = episode.characters,
         url = episode.url
     )
+
+    @IgnoredOnParcel
+    val fullName = "$code $name"
 
     companion object
 }

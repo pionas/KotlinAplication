@@ -2,10 +2,10 @@ package pl.pionas.kotlinaplication.features.characters.all.presentation
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import pl.pionas.kotlinaplication.R
+import pl.pionas.kotlinaplication.core.adapter.BindableAdapter
 import pl.pionas.kotlinaplication.core.base.BaseAdapter
+import pl.pionas.kotlinaplication.databinding.CharacterItemBinding
 import pl.pionas.kotlinaplication.features.characters.all.presentation.model.CharacterDisplayable
 
 /**
@@ -13,6 +13,7 @@ import pl.pionas.kotlinaplication.features.characters.all.presentation.model.Cha
  * adrian@pionka.com
  */
 class CharactersAdapter(private val charactersViewModel: CharactersViewModel) :
+    BindableAdapter<CharacterDisplayable>,
     BaseAdapter<CharacterDisplayable>() {
 
     constructor(charactersViewModel: CharactersViewModel, list: List<CharacterDisplayable>) : this(
@@ -23,7 +24,8 @@ class CharactersAdapter(private val charactersViewModel: CharactersViewModel) :
 
     override fun onCreateViewHolderBase(parent: ViewGroup, viewType: Int): CharacterViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        return CharacterViewHolder(inflater, parent, charactersViewModel)
+        val binding = CharacterItemBinding.inflate(inflater, parent, false)
+        return CharacterViewHolder(binding, charactersViewModel)
     }
 
     override fun onBindViewHolderBase(holder: RecyclerView.ViewHolder, position: Int) {
@@ -32,24 +34,20 @@ class CharactersAdapter(private val charactersViewModel: CharactersViewModel) :
     }
 
     class CharacterViewHolder(
-        inflater: LayoutInflater,
-        parent: ViewGroup,
-        charactersViewModel: CharactersViewModel
+        private val binding: CharacterItemBinding,
+        private val charactersViewModel: CharactersViewModel
     ) :
-        RecyclerView.ViewHolder(inflater.inflate(R.layout.character_item, parent, false)) {
-        private var mCharacterView: TextView? = null
-        private var mCharactersViewModel: CharactersViewModel
-
-
-        init {
-            mCharacterView = itemView.findViewById(R.id.character_name)
-            mCharactersViewModel = charactersViewModel
-        }
+        RecyclerView.ViewHolder(binding.root) {
 
         fun bind(character: CharacterDisplayable) {
-            mCharacterView?.text = character.name
-            mCharacterView?.setOnClickListener {
-                mCharactersViewModel.onCharacterClick(character)
+            with(binding) {
+                binding.item = character
+                charactersViewModel.let { characterViewModel ->
+                    root.setOnClickListener {
+                        characterViewModel.onCharacterClick(character)
+                    }
+                }
+                binding.executePendingBindings()
             }
         }
     }
