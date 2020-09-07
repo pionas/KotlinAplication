@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".features.episodes.presentation.EpisodeFragment">
+    tools:context="pl.pionas.kotlinaplication.features.episodes.all.presentation.EpisodesFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"

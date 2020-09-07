@@ -2,13 +2,17 @@ package pl.pionas.kotlinaplication.mock
 
 import org.jetbrains.annotations.TestOnly
 import pl.pionas.kotlinaplication.core.api.model.*
+import pl.pionas.kotlinaplication.features.characters.all.presentation.model.CharacterDisplayable
 import pl.pionas.kotlinaplication.features.characters.data.local.model.CharacterCached
 import pl.pionas.kotlinaplication.features.characters.domain.model.Character
 import pl.pionas.kotlinaplication.features.characters.domain.model.Origin
+import pl.pionas.kotlinaplication.features.episodes.all.presentation.model.EpisodeDisplayable
 import pl.pionas.kotlinaplication.features.episodes.data.local.model.EpisodeCached
 import pl.pionas.kotlinaplication.features.episodes.domain.model.Episode
+import pl.pionas.kotlinaplication.features.locations.all.presentation.model.LocationDisplayable
 import pl.pionas.kotlinaplication.features.locations.data.local.model.LocationCached
 import pl.pionas.kotlinaplication.features.locations.domain.model.Location
+import pl.pionas.kotlinaplication.features.users.domain.model.User
 
 /**
  * Created by Adrian Pionka on 21 sierpień 2020
@@ -64,6 +68,16 @@ fun Episode.Companion.mock() = Episode(
     url = "episode url"
 )
 
+@TestOnly
+fun EpisodeDisplayable.Companion.mock() = EpisodeDisplayable(
+    id = 1,
+    name = "episode name",
+    airDate = "episode airDate",
+    code = "episode code",
+    characters = emptyList(),
+    url = "episode url"
+)
+
 fun LocationRemote.Companion.mock() = LocationRemote(
     name = "location name",
     url = "location url"
@@ -87,6 +101,12 @@ fun LocationCached.Companion.mock() = LocationCached(
 
 @TestOnly
 fun Location.Companion.mock() = Location(
+    name = "location name",
+    url = "location url"
+)
+
+@TestOnly
+fun LocationDisplayable.Companion.mock() = LocationDisplayable(
     name = "location name",
     url = "location url"
 )
@@ -153,4 +173,33 @@ fun Character.Companion.mock() = Character(
     image = "character image",
     episode = emptyList(),
     url = "character url"
+)
+
+@TestOnly
+fun CharacterDisplayable.Companion.mock() = CharacterDisplayable(
+    id = 1,
+    name = "character name",
+    status = "character status",
+    species = "character species",
+    type = "character type",
+    gender = "character gender",
+    origin = Origin.mock(),
+    location = LocationRemote.mock().toLocation(),
+    image = "character image",
+    episode = emptyList(),
+    url = "character url"
+)
+
+fun UserResponse.Companion.mock() = UserResponse(
+    info = ResponseInfo.mock(),
+    results = User.mock()
+)
+
+@TestOnly
+fun User.Companion.mock() = User(
+    id = 1,
+    name = "user name",
+    username = "user username",
+    password = "user password",
+    email = "user email"
 )
