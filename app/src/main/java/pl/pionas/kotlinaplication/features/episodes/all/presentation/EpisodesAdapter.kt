@@ -2,10 +2,10 @@ package pl.pionas.kotlinaplication.features.episodes.all.presentation
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import pl.pionas.kotlinaplication.R
+import pl.pionas.kotlinaplication.core.adapter.BindableAdapter
 import pl.pionas.kotlinaplication.core.base.BaseAdapter
+import pl.pionas.kotlinaplication.databinding.EpisodeItemBinding
 import pl.pionas.kotlinaplication.features.episodes.all.presentation.model.EpisodeDisplayable
 
 /**
@@ -13,6 +13,7 @@ import pl.pionas.kotlinaplication.features.episodes.all.presentation.model.Episo
  * adrian@pionka.com
  */
 class EpisodesAdapter(private val episodesViewModel: EpisodesViewModel) :
+    BindableAdapter<EpisodeDisplayable>,
     BaseAdapter<EpisodeDisplayable>() {
 
     constructor(episodesViewModel: EpisodesViewModel, list: List<EpisodeDisplayable>) : this(
@@ -23,7 +24,8 @@ class EpisodesAdapter(private val episodesViewModel: EpisodesViewModel) :
 
     override fun onCreateViewHolderBase(parent: ViewGroup, viewType: Int): EpisodeViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        return EpisodeViewHolder(inflater, parent, episodesViewModel)
+        val binding = EpisodeItemBinding.inflate(inflater, parent, false)
+        return EpisodeViewHolder(binding, episodesViewModel)
     }
 
     override fun onBindViewHolderBase(holder: RecyclerView.ViewHolder, position: Int) {
@@ -32,23 +34,19 @@ class EpisodesAdapter(private val episodesViewModel: EpisodesViewModel) :
     }
 
     class EpisodeViewHolder(
-        inflater: LayoutInflater,
-        parent: ViewGroup,
-        episodesViewModel: EpisodesViewModel
+        private val binding: EpisodeItemBinding,
+        private val mEpisodesViewModel: EpisodesViewModel?
     ) :
-        RecyclerView.ViewHolder(inflater.inflate(R.layout.episode_item, parent, false)) {
-        private var mEpisodeView: TextView? = null
-        private var mEpisodesViewModel: EpisodesViewModel
-
-        init {
-            mEpisodeView = itemView.findViewById(R.id.episode_name)
-            mEpisodesViewModel = episodesViewModel
-        }
-
+        RecyclerView.ViewHolder(binding.root) {
         fun bind(episode: EpisodeDisplayable) {
-            mEpisodeView?.text = episode.name
-            mEpisodeView?.setOnClickListener {
-                mEpisodesViewModel.onEpisodeClick(episode)
+            with(binding) {
+                binding.item = episode
+                mEpisodesViewModel?.let { episodeViewModel ->
+                    root.setOnClickListener {
+                        episodeViewModel.onEpisodeClick(episode)
+                    }
+                }
+                binding.executePendingBindings()
             }
         }
 

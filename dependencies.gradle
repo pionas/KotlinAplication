@@ -80,4 +80,9 @@ ext {
             kluent: "org.amshove.kluent:kluent-android:" + kluentVersion
     ]
 
+    def gladeVersion = "4.11.0"
+    gladeDependencies = [
+            glade: "com.github.bumptech.glide:glide:" + gladeVersion
+    ]
+
 }

@@ -2,10 +2,10 @@ package pl.pionas.kotlinaplication.features.locations.all.presentation
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import pl.pionas.kotlinaplication.R
+import pl.pionas.kotlinaplication.core.adapter.BindableAdapter
 import pl.pionas.kotlinaplication.core.base.BaseAdapter
+import pl.pionas.kotlinaplication.databinding.LocationItemBinding
 import pl.pionas.kotlinaplication.features.locations.all.presentation.model.LocationDisplayable
 
 /**
@@ -13,6 +13,7 @@ import pl.pionas.kotlinaplication.features.locations.all.presentation.model.Loca
  * adrian@pionka.com
  */
 class LocationsAdapter(private val locationsViewModel: LocationsViewModel) :
+    BindableAdapter<LocationDisplayable>,
     BaseAdapter<LocationDisplayable>() {
 
     constructor(locationsViewModel: LocationsViewModel, list: List<LocationDisplayable>) : this(
@@ -23,7 +24,8 @@ class LocationsAdapter(private val locationsViewModel: LocationsViewModel) :
 
     override fun onCreateViewHolderBase(parent: ViewGroup, viewType: Int): LocationViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        return LocationViewHolder(inflater, parent, locationsViewModel)
+        val binding = LocationItemBinding.inflate(inflater, parent, false)
+        return LocationViewHolder(binding, locationsViewModel)
     }
 
     override fun onBindViewHolderBase(holder: RecyclerView.ViewHolder, position: Int) {
@@ -32,23 +34,19 @@ class LocationsAdapter(private val locationsViewModel: LocationsViewModel) :
     }
 
     class LocationViewHolder(
-        inflater: LayoutInflater, parent: ViewGroup,
-        locationsViewModel: LocationsViewModel
+        private val binding: LocationItemBinding,
+        private val locationsViewModel: LocationsViewModel
     ) :
-        RecyclerView.ViewHolder(inflater.inflate(R.layout.location_item, parent, false)) {
-        private var mLocationView: TextView? = null
-        private var mLocationsViewModel: LocationsViewModel
-
-
-        init {
-            mLocationView = itemView.findViewById(R.id.location_name)
-            mLocationsViewModel = locationsViewModel
-        }
-
+        RecyclerView.ViewHolder(binding.root) {
         fun bind(location: LocationDisplayable) {
-            mLocationView?.text = location.name
-            mLocationView?.setOnClickListener {
-                mLocationsViewModel.onLocationClick(location)
+            with(binding) {
+                binding.item = location
+                locationsViewModel.let { locationViewModel ->
+                    root.setOnClickListener {
+                        locationViewModel.onLocationClick(location)
+                    }
+                }
+                binding.executePendingBindings()
             }
         }
 
