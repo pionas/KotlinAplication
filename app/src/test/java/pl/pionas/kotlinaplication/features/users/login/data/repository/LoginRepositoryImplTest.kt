@@ -1,4 +1,4 @@
-package pl.pionas.kotlinaplication.features.users.login.repository
+package pl.pionas.kotlinaplication.features.users.login.data.repository
 
 import androidx.lifecycle.Observer
 import io.mockk.*
@@ -11,7 +11,7 @@ import pl.pionas.kotlinaplication.core.base.UiState
 import pl.pionas.kotlinaplication.core.exception.ErrorMapper
 import pl.pionas.kotlinaplication.core.exception.ErrorWrapper
 import pl.pionas.kotlinaplication.core.network.NetworkStateProvider
-import pl.pionas.kotlinaplication.features.users.domain.GetAuthUseCase
+import pl.pionas.kotlinaplication.features.users.domain.AuthUseCase
 import pl.pionas.kotlinaplication.features.users.domain.model.User
 import pl.pionas.kotlinaplication.features.users.login.presentation.LoginViewModel
 import pl.pionas.kotlinaplication.mock.mock
@@ -49,7 +49,7 @@ internal class LoginRepositoryImplTest {
     fun `GIVEN use case result in success WHEN user live data is observed THEN set idle state AND set error message in live data`() {
         // given
         val throwable = Throwable("Ops... Something went wrong")
-        val useCase = mockk<GetAuthUseCase> {
+        val useCase = mockk<AuthUseCase> {
             every { this@mockk(any(), any(), any(), any()) } answers {
                 lastArg<(Result<User>) -> Unit>()(Result.failure(throwable))
             }

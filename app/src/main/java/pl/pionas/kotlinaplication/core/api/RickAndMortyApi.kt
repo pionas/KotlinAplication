@@ -7,6 +7,7 @@ import pl.pionas.kotlinaplication.core.api.model.UserResponse
 import pl.pionas.kotlinaplication.features.users.domain.model.User
 import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.Path
 
 /**
  * Created by Adrian Pionka on 13 lipiec 2020
@@ -25,5 +26,11 @@ interface RickAndMortyApi {
 
     @GET("login")
     suspend fun login(@Body user: User): UserResponse
+
+    @GET("user")
+    suspend fun getUsers(): UserResponse
+
+    @GET("user/{username}")
+    suspend fun getUser(@Path("username") username: String): UserResponse
 
 }

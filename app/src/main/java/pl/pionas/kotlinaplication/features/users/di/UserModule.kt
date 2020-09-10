@@ -2,11 +2,11 @@ package pl.pionas.kotlinaplication.features.users.di
 
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
-import pl.pionas.kotlinaplication.features.users.domain.GetAuthUseCase
+import pl.pionas.kotlinaplication.features.users.data.repository.UserRepository
+import pl.pionas.kotlinaplication.features.users.data.repository.UserRepositoryImpl
+import pl.pionas.kotlinaplication.features.users.domain.AuthUseCase
 import pl.pionas.kotlinaplication.features.users.login.presentation.LoginFragment
 import pl.pionas.kotlinaplication.features.users.login.presentation.LoginViewModel
-import pl.pionas.kotlinaplication.features.users.login.repository.LoginRepository
-import pl.pionas.kotlinaplication.features.users.login.repository.LoginRepositoryImpl
 
 /**
  * Created by Adrian Pionka on 31 sierpień 2020
@@ -15,10 +15,10 @@ import pl.pionas.kotlinaplication.features.users.login.repository.LoginRepositor
 
 val userModule = module {
     // data
-    factory<LoginRepository> { LoginRepositoryImpl(get(), get(), get()) }
+    factory<UserRepository> { UserRepositoryImpl(get(), get(), get(), get()) }
 
     // domain
-    factory { GetAuthUseCase(get()) }
+    factory { AuthUseCase(get()) }
 
     // presentation
     viewModel { LoginViewModel(get(), get()) }

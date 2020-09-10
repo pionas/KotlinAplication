@@ -4,10 +4,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.map
 import androidx.lifecycle.viewModelScope
-import pl.pionas.kotlinaplication.R
 import pl.pionas.kotlinaplication.core.base.BaseViewModel
 import pl.pionas.kotlinaplication.core.exception.ErrorMapper
-import pl.pionas.kotlinaplication.features.users.domain.GetAuthUseCase
+import pl.pionas.kotlinaplication.features.users.UserValidateUtils
+import pl.pionas.kotlinaplication.features.users.domain.AuthUseCase
 import pl.pionas.kotlinaplication.features.users.domain.model.User
 import pl.pionas.kotlinaplication.features.users.presentation.model.UserDisplayable
 
@@ -16,14 +16,18 @@ import pl.pionas.kotlinaplication.features.users.presentation.model.UserDisplaya
  * adrian@pionka.com
  */
 class LoginViewModel(
-    private val getAuthUseCase: GetAuthUseCase,
+    private val authUseCase: AuthUseCase,
     errorMapper: ErrorMapper
 ) : BaseViewModel(errorMapper) {
 
-    private val _loginForm = MutableLiveData<LoginFormState>()
+    private val _loginForm by lazy {
+        MutableLiveData<LoginFormState>()
+    }
     val loginFormState: LiveData<LoginFormState> = _loginForm
 
-    private val _user = MutableLiveData<User>()
+    private val _user by lazy {
+        MutableLiveData<User>()
+    }
 
     val user: LiveData<UserDisplayable> by lazy {
         _user.map { user ->
@@ -34,7 +38,7 @@ class LoginViewModel(
     fun auth(username: String, password: String) {
         val user = User(username = username, password = password)
         setPendingState()
-        getAuthUseCase(
+        authUseCase(
             params = user,
             scope = viewModelScope
         ) { result ->
@@ -47,18 +51,6 @@ class LoginViewModel(
     }
 
     fun validate(username: String, password: String) {
-        var usernameError: Int? = null
-        var passwordError: Int? = null
-        var isDataValid = true
-        if (username.isEmpty()) {
-            usernameError = R.string.username_cant_be_empty
-            isDataValid = false
-        }
-        if (password.length < 4) {
-            passwordError = R.string.password_cant_be_too_short
-            isDataValid = false
-        }
-
-        _loginForm.value = LoginFormState(usernameError, passwordError, isDataValid)
+        UserValidateUtils.validate(_loginForm, username, password)
     }
 }
