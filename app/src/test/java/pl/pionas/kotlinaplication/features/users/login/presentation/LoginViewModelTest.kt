@@ -5,7 +5,7 @@ import org.amshove.kluent.shouldBe
 import org.junit.jupiter.api.Test
 import pl.pionas.kotlinaplication.core.base.UiState
 import pl.pionas.kotlinaplication.core.exception.ErrorMapper
-import pl.pionas.kotlinaplication.features.users.domain.GetAuthUseCase
+import pl.pionas.kotlinaplication.features.users.domain.AuthUseCase
 import pl.pionas.kotlinaplication.utils.ViewModelTest
 import pl.pionas.kotlinaplication.utils.getOrAwaitValue
 import pl.pionas.kotlinaplication.utils.observeForTesting
@@ -19,7 +19,7 @@ internal class LoginViewModelTest : ViewModelTest() {
     @Test
     fun `WHEN user live data is observed THEN set idle state`() {
         // given
-        val useCase = mockk<GetAuthUseCase>(relaxed = true)
+        val useCase = mockk<AuthUseCase>(relaxed = true)
         val errorMapper = mockk<ErrorMapper>()
         val viewModel = LoginViewModel(useCase, errorMapper)
 

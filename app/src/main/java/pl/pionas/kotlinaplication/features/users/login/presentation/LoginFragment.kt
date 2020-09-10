@@ -7,6 +7,7 @@ import kotlinx.android.synthetic.main.fragment_login.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import pl.pionas.kotlinaplication.R
 import pl.pionas.kotlinaplication.core.base.BaseFragment
+import pl.pionas.kotlinaplication.features.users.AuthState
 import pl.pionas.kotlinaplication.features.users.presentation.model.UserDisplayable
 
 class LoginFragment : BaseFragment<LoginViewModel>(R.layout.fragment_login) {
@@ -51,14 +52,13 @@ class LoginFragment : BaseFragment<LoginViewModel>(R.layout.fragment_login) {
 
     private fun observeFormState() {
         viewModel.loginFormState.observe(this) {
-            // disable login button unless both username / password is valid
-            buttonLogin.isEnabled = it.isDataValid
+            buttonLogin.isEnabled = it.authState === null
 
-            if (it.usernameError != null) {
-                editTextUsername.error = getString(it.usernameError)
+            if (it.authState === AuthState.UsernameIsEmpty) {
+                editTextUsername.error = getString(R.string.username_cant_be_empty)
             }
-            if (it.passwordError != null) {
-                editTextPassword.error = getString(it.passwordError)
+            if (it.authState === AuthState.PasswordIsTooShort) {
+                editTextPassword.error = getString(R.string.password_cant_be_too_short)
             }
         }
     }
