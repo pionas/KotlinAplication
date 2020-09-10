@@ -52,4 +52,10 @@
         android:id="@+id/location_details_screen"
         android:name="pl.pionas.kotlinaplication.features.locations.details.presentation.LocationDetailsFragment"
         android:label="@string/title_location_details" />
+
+    <fragment
+        android:id="@+id/auth_screen"
+        android:name="pl.pionas.kotlinaplication.features.users.login.presentation.LoginFragment"
+        android:label="@string/title_auth"
+        tools:layout="@layout/fragment_login"></fragment>
 </navigation>

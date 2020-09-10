@@ -43,12 +43,11 @@ class LoginFragment :
     private fun observeFormState() {
         viewModel.loginFormState.observe(this) {
             buttonLogin.isEnabled = it.authState === null
-
-            if (it.authState === AuthState.UsernameIsEmpty) {
-                editTextUsername.error = getString(R.string.username_cant_be_empty)
-            }
-            if (it.authState === AuthState.PasswordIsTooShort) {
-                editTextPassword.error = getString(R.string.password_cant_be_too_short)
+            when (it.authState) {
+                AuthState.UsernameIsEmpty -> editTextUsername.error =
+                    getString(R.string.username_cant_be_empty)
+                AuthState.PasswordIsTooShort -> editTextPassword.error =
+                    getString(R.string.password_cant_be_too_short)
             }
         }
     }

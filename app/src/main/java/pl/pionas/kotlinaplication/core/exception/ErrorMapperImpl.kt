@@ -13,7 +13,6 @@ class ErrorMapperImpl(private val context: Context) : ErrorMapper {
         return when (throwable) {
             is ServerException -> mapServerException(throwable)
             else -> getMessage(R.string.error_unknown)
-
         }
     }
 

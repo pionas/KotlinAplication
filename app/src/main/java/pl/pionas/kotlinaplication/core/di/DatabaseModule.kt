@@ -11,10 +11,12 @@ import pl.pionas.kotlinaplication.core.database.AppDatabase
 val databaseModule = module {
     single {
         Room.databaseBuilder(get(), AppDatabase::class.java, "kotlin_application.db")
+            .fallbackToDestructiveMigration()
             .build()
     }
 
     single { get<AppDatabase>().episodeDao() }
     single { get<AppDatabase>().characterDao() }
     single { get<AppDatabase>().locationDao() }
+    single { get<AppDatabase>().userDao() }
 }
