@@ -1,12 +1,12 @@
 ext {
-    def appCompatVersion = "1.1.0"
-    def coreKtxVersion = "1.3.0"
+    def appCompatVersion = "1.2.0"
+    def coreKtxVersion = "1.3.1"
     coreDependencies = [
             appCompat: "androidx.appcompat:appcompat:" + appCompatVersion,
             coreKtx  : "androidx.core:core-ktx:" + coreKtxVersion
     ]
 
-    def constraintlayoutVersion = "1.1.3"
+    def constraintlayoutVersion = "2.0.0"
     def materialVersion = "1.1.0"
     def recyclerViewVersion = "1.1.0"
     def glideVersion = "4.11.0"
@@ -23,14 +23,14 @@ ext {
             navigationUiKtx      : "androidx.navigation:navigation-ui-ktx:" + navigationKtxVersion
     ]
 
-    def koinAndroidVersion = "2.1.5"
+    def koinAndroidVersion = "2.1.6"
     diDependencies = [
             koinAndroid          : "org.koin:koin-android:" + koinAndroidVersion,
             koinAndroidxViewModel: "org.koin:koin-androidx-viewmodel:" + koinAndroidVersion,
             koinAndroidxScope    : "org.koin:koin-androidx-scope:" + koinAndroidVersion
     ]
 
-    def kotlinxCoroutinesVersion = "1.3.5"
+    def kotlinxCoroutinesVersion = "1.3.9"
     coroutinesDependencies = [
             kotlinxCoroutinesCore   : "org.jetbrains.kotlinx:kotlinx-coroutines-core:" + kotlinxCoroutinesVersion,
             kotlinxCoroutinesAndroid: "org.jetbrains.kotlinx:kotlinx-coroutines-android:" + kotlinxCoroutinesVersion
@@ -47,8 +47,8 @@ ext {
     ]
 
 
-    def retrofitVersion = "2.8.1"
-    def okhttp3Version = "4.6.0"
+    def retrofitVersion = "2.9.0"
+    def okhttp3Version = "4.9.0"
     networkDependencies = [
             retrofit          : "com.squareup.retrofit2:retrofit:" + retrofitVersion,
             converterGson     : "com.squareup.retrofit2:converter-gson:" + retrofitVersion,
@@ -59,7 +59,7 @@ ext {
     def roomVersion = "2.2.5"
     roomImplementation = [
             roomRuntime: "androidx.room:room-runtime:" + roomVersion,
-            roomRuntime: "androidx.room:room-ktx:" + roomVersion
+            roomKtx: "androidx.room:room-ktx:" + roomVersion
     ]
     roomKapt = [
             roomCompiler: "androidx.room:room-compiler:" + roomVersion
