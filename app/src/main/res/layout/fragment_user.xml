@@ -7,13 +7,13 @@
 
         <variable
             name="viewModel"
-            type="pl.pionas.kotlinaplication.features.episodes.all.presentation.EpisodesViewModel" />
+            type="pl.pionas.kotlinaplication.features.users.all.presentation.UsersViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="pl.pionas.kotlinaplication.features.episodes.all.presentation.EpisodesFragment">
+        tools:context="pl.pionas.kotlinaplication.features.users.all.presentation.UsersFragment">
 
         <TextView
             android:id="@+id/count"
@@ -21,7 +21,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:padding="8dp"
-            android:text="@{String.valueOf(viewModel.episodes.size())}"
+            android:text="@{String.valueOf(viewModel.users.size())}"
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.recyclerview.widget.RecyclerView
@@ -29,7 +29,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:padding="8dp"
-            items="@{viewModel.episodes}"
+            items="@{viewModel.users}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/count"
             showOnIdleState="@{viewModel.uiState}" />
@@ -45,6 +45,5 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             showOnPendingState="@{viewModel.uiState}" />
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

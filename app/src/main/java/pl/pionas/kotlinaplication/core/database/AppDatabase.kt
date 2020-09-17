@@ -18,7 +18,8 @@ import pl.pionas.kotlinaplication.features.users.data.local.model.UserCached
  */
 @Database(
     entities = [EpisodeCached::class, CharacterCached::class, LocationCached::class, UserCached::class],
-    version = 4
+    version = 5,
+    exportSchema = false
 )
 @TypeConverters(ListConverter::class)
 abstract class AppDatabase : RoomDatabase() {

@@ -5,29 +5,27 @@ import io.mockk.mockk
 import kotlinx.coroutines.GlobalScope
 import org.junit.jupiter.api.Test
 import pl.pionas.kotlinaplication.features.users.data.repository.UserRepository
-import pl.pionas.kotlinaplication.features.users.domain.model.UserCredential
 
 /**
  * Created by Adrian Pionka on 17 wrzesień 2020
  * adrian@pionka.com
  */
 
-internal class AuthUseCaseTest {
+internal class GetUsersUseCaseTest {
 
     @Test
-    fun `when use case is invoked than execute login method from repository`() {
+    fun `when use case is invoked than execute getUsers method from repository`() {
         // given
-        val user = UserCredential("username", "password")
         val repository = mockk<UserRepository>(relaxed = true)
-        val useCase = AuthUseCase(repository)
+        val useCase = GetUsersUseCase(repository)
 
         // when
         useCase(
-            params = user,
+            params = Unit,
             scope = GlobalScope
         )
 
         // then
-        coVerify { repository.login(user) }
+        coVerify { repository.getUsers() }
     }
 }

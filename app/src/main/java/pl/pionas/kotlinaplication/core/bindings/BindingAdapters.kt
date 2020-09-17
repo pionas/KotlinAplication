@@ -17,28 +17,27 @@ import pl.pionas.kotlinaplication.core.base.UiState
 object BindingAdapters {
 
 
-    @BindingAdapter("app:showOnPendingState")
+    @BindingAdapter("showOnPendingState")
     @JvmStatic
     fun showOnPendingState(progressBar: ProgressBar, uiState: UiState) {
         progressBar.visibility = if (uiState == UiState.Pending) View.VISIBLE else View.GONE
     }
 
 
-    @BindingAdapter("app:showOnIdleState")
+    @BindingAdapter("showOnIdleState")
     @JvmStatic
     fun showOnIdleState(recyclerView: RecyclerView, uiState: UiState) {
         recyclerView.visibility = if (uiState == UiState.Idle) View.VISIBLE else View.GONE
     }
 
-    @BindingAdapter("app:items")
+    @BindingAdapter("items")
     @JvmStatic
     fun <T> setItems(recyclerView: RecyclerView, items: List<T>?) {
         if (items.isNullOrEmpty()) return
         (recyclerView.adapter as? BindableAdapter<T>)?.setItems(items)
     }
 
-
-    @BindingAdapter(value = ["app:imageUrl", "app:placeholder"], requireAll = false)
+    @BindingAdapter(value = ["imageUrl", "placeholder"], requireAll = false)
     @JvmStatic
     fun setImage(imageView: ImageView, imageUrl: String, @DrawableRes placeholder: Int) {
         Glide.with(imageView.context)
@@ -47,6 +46,5 @@ object BindingAdapters {
             .into(imageView)
 
     }
-
 
 }

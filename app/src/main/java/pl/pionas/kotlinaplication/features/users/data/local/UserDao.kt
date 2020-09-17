@@ -17,8 +17,8 @@ interface UserDao {
     @Query("SELECT * FROM UserCached")
     suspend fun getUsers(): List<UserCached>
 
-    @Query("SELECT * FROM UserCached WHERE username = :username")
-    suspend fun getUser(username: String): UserCached
+    @Query("SELECT * FROM UserCached WHERE name = :name")
+    suspend fun getUser(name: String): UserCached
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun saveUsers(vararg user: UserCached)

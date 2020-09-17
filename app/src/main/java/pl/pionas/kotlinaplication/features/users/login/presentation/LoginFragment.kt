@@ -9,7 +9,7 @@ import pl.pionas.kotlinaplication.R
 import pl.pionas.kotlinaplication.core.base.BaseFragment
 import pl.pionas.kotlinaplication.databinding.FragmentLoginBinding
 import pl.pionas.kotlinaplication.features.users.AuthState
-import pl.pionas.kotlinaplication.features.users.presentation.model.UserDisplayable
+import pl.pionas.kotlinaplication.features.users.all.presentation.model.UserDisplayable
 
 class LoginFragment :
     BaseFragment<LoginViewModel, FragmentLoginBinding>(BR.viewModel, R.layout.fragment_login) {

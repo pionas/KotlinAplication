@@ -7,6 +7,7 @@ import pl.pionas.kotlinaplication.core.network.NetworkStateProvider
 import pl.pionas.kotlinaplication.features.users.data.local.UserDao
 import pl.pionas.kotlinaplication.features.users.data.local.model.UserCached
 import pl.pionas.kotlinaplication.features.users.domain.model.User
+import pl.pionas.kotlinaplication.features.users.domain.model.UserCredential
 
 /**
  * Created by Adrian Pionka on 10 wrzesień 2020
@@ -18,13 +19,13 @@ class UserRepositoryImpl(
     private val networkStateProvider: NetworkStateProvider,
     private val errorWrapper: ErrorWrapper
 ) : UserRepository {
-    override suspend fun login(user: User): User? {
+    override suspend fun login(user: UserCredential): User? {
         return callOrThrow(errorWrapper) {
             getUserFromRemote(user)
         }
     }
 
-    private suspend fun getUserFromRemote(user: User): User {
+    private suspend fun getUserFromRemote(user: UserCredential): User {
         return rickAndMortyApi.login(user).results[0].toUser()
     }
 

@@ -11,8 +11,12 @@ import pl.pionas.kotlinaplication.core.base.UiState
 import pl.pionas.kotlinaplication.core.exception.ErrorMapper
 import pl.pionas.kotlinaplication.core.exception.ErrorWrapper
 import pl.pionas.kotlinaplication.core.network.NetworkStateProvider
+import pl.pionas.kotlinaplication.features.users.data.local.UserDao
+import pl.pionas.kotlinaplication.features.users.data.repository.UserRepository
+import pl.pionas.kotlinaplication.features.users.data.repository.UserRepositoryImpl
 import pl.pionas.kotlinaplication.features.users.domain.AuthUseCase
 import pl.pionas.kotlinaplication.features.users.domain.model.User
+import pl.pionas.kotlinaplication.features.users.domain.model.UserCredential
 import pl.pionas.kotlinaplication.features.users.login.presentation.LoginViewModel
 import pl.pionas.kotlinaplication.mock.mock
 import pl.pionas.kotlinaplication.utils.getOrAwaitValue
@@ -25,18 +29,19 @@ import pl.pionas.kotlinaplication.utils.observeForTesting
 internal class LoginRepositoryImplTest {
     @Test
     fun `GIVEN network is connected WHEN auth request THEN fetch user from API`() {
-        val user = User("username", "password")
+        val user = UserCredential("username", "password")
         // given
         val api = mockk<RickAndMortyApi>() {
             coEvery { login(user) } returns UserResponse.mock()
         }
+        val userDao = mockk<UserDao>(relaxed = true)
         val networkStateProvider = mockk<NetworkStateProvider> {
             coEvery { isNetworkAvailable() } returns true
         }
         val errorWrapper = mockk<ErrorWrapper>()
 
-        val repository: LoginRepository =
-            LoginRepositoryImpl(api, networkStateProvider, errorWrapper)
+        val repository: UserRepository =
+            UserRepositoryImpl(api, userDao, networkStateProvider, errorWrapper)
 
         // when
         runBlocking { repository.login(user) }

@@ -13,17 +13,13 @@ data class UserCached(
     @PrimaryKey
     val id: Int?,
     val name: String?,
-    val username: String,
-    val password: String?,
-    val email: String?
+    val avatar: String?
 ) {
 
     constructor(user: User) : this(
         user.id,
         user.name,
-        user.username,
-        user.password,
-        user.email
+        user.avatar
     )
 
     companion object
@@ -31,8 +27,6 @@ data class UserCached(
     fun toUser() = User(
         id = id,
         name = name,
-        username = username,
-        password = password,
-        email = email
+        avatar = avatar
     )
 }

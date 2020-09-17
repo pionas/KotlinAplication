@@ -58,4 +58,21 @@
         android:name="pl.pionas.kotlinaplication.features.users.login.presentation.LoginFragment"
         android:label="@string/title_auth"
         tools:layout="@layout/fragment_login"></fragment>
+
+
+    <fragment
+        android:id="@+id/users_screen"
+        android:name="pl.pionas.kotlinaplication.features.users.all.presentation.UsersFragment"
+        android:label="@string/title_users"
+        tools:layout="@layout/fragment_user">
+        <action
+            android:id="@+id/action_navigate_from_users_screen_to_user_details_screen"
+            app:destination="@id/user_details_screen"
+            app:popUpTo="@id/users_screen" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/user_details_screen"
+        android:name="pl.pionas.kotlinaplication.features.users.details.presentation.UserDetailsFragment"
+        android:label="@string/title_user_details" />
 </navigation>

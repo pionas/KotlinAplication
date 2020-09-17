@@ -7,9 +7,10 @@ import androidx.lifecycle.viewModelScope
 import pl.pionas.kotlinaplication.core.base.BaseViewModel
 import pl.pionas.kotlinaplication.core.exception.ErrorMapper
 import pl.pionas.kotlinaplication.features.users.UserValidateUtils
+import pl.pionas.kotlinaplication.features.users.all.presentation.model.UserDisplayable
 import pl.pionas.kotlinaplication.features.users.domain.AuthUseCase
 import pl.pionas.kotlinaplication.features.users.domain.model.User
-import pl.pionas.kotlinaplication.features.users.presentation.model.UserDisplayable
+import pl.pionas.kotlinaplication.features.users.domain.model.UserCredential
 
 /**
  * Created by Adrian Pionka on 24 sierpień 2020
@@ -36,7 +37,7 @@ class LoginViewModel(
     }
 
     fun auth(username: String, password: String) {
-        val user = User(username = username, password = password)
+        val user = UserCredential(username = username, password = password)
         setPendingState()
         authUseCase(
             params = user,

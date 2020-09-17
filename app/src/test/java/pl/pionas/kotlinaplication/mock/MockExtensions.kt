@@ -12,6 +12,8 @@ import pl.pionas.kotlinaplication.features.episodes.domain.model.Episode
 import pl.pionas.kotlinaplication.features.locations.all.presentation.model.LocationDisplayable
 import pl.pionas.kotlinaplication.features.locations.data.local.model.LocationCached
 import pl.pionas.kotlinaplication.features.locations.domain.model.Location
+import pl.pionas.kotlinaplication.features.users.all.presentation.model.UserDisplayable
+import pl.pionas.kotlinaplication.features.users.data.local.model.UserCached
 import pl.pionas.kotlinaplication.features.users.domain.model.User
 
 /**
@@ -190,16 +192,38 @@ fun CharacterDisplayable.Companion.mock() = CharacterDisplayable(
     url = "character url"
 )
 
+@TestOnly
+fun UserRemote.Companion.mock() = UserRemote(
+    id = 1,
+    name = "user name",
+    avatar = "user avatar"
+)
+
 fun UserResponse.Companion.mock() = UserResponse(
     info = ResponseInfo.mock(),
-    results = User.mock()
+    results = listOf(
+        UserRemote.mock(),
+        UserRemote.mock(),
+        UserRemote.mock()
+    )
+)
+
+fun UserCached.Companion.mock() = UserCached(
+    id = 1,
+    name = "user name",
+    avatar = "user avatar"
 )
 
 @TestOnly
 fun User.Companion.mock() = User(
     id = 1,
     name = "user name",
-    username = "user username",
-    password = "user password",
-    email = "user email"
+    avatar = "user avatar"
+)
+
+@TestOnly
+fun UserDisplayable.Companion.mock() = UserDisplayable(
+    id = 1,
+    name = "user name",
+    avatar = "user avatar"
 )
