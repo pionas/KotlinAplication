@@ -28,6 +28,6 @@ internal class AuthUseCaseTest {
         )
 
         // then
-        coVerify { repository.login(user) }
+        coVerify { repository.auth(user) }
     }
 }

@@ -2,6 +2,7 @@ package pl.pionas.kotlinaplication.core.di
 
 import android.content.Context
 import android.net.ConnectivityManager
+import android.widget.RelativeLayout
 import androidx.navigation.navOptions
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
@@ -19,6 +20,8 @@ import pl.pionas.kotlinaplication.core.navigation.FragmentNavigatorImpl
 import pl.pionas.kotlinaplication.core.network.NetworkStateProvider
 import pl.pionas.kotlinaplication.core.network.NetworkStateProviderImpl
 import pl.pionas.kotlinaplication.core.provider.ActivityProvider
+import pl.pionas.kotlinaplication.core.provider.StringProvider
+import pl.pionas.kotlinaplication.core.provider.StringProviderImpl
 
 /**
  * Created by Adrian Pionka on 13 lipiec 2020
@@ -44,6 +47,9 @@ val appModule = module {
     factory { androidContext().getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager }
     factory<NetworkStateProvider> { NetworkStateProviderImpl(get()) }
     single(createdAtStart = true) { ActivityProvider(androidApplication()) }
+
+    factory<StringProvider> { StringProviderImpl(androidContext()) }
+
     factory<FragmentNavigator> {
         FragmentNavigatorImpl(
             activityProvider = get(),

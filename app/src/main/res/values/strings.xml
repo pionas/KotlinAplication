@@ -3,7 +3,7 @@
     <string name="error_internal">Houston, we have a server-side problem. Try again in a few minutes.</string>
     <string name="error_bad_request">Validation error. Please check input parameters.</string>
     <string name="error_unknown">Ops... Something went wrong</string>
-    <string name="login">Login</string>
+    <string name="auth">Auth</string>
     <string name="username">Username</string>
     <string name="password">Password</string>
     <string name="username_cant_be_empty">Username can\'t be empty!</string>

@@ -21,4 +21,8 @@ class UserNavigatorImpl(private val fragmentNavigator: FragmentNavigator) : User
         fragmentNavigator.goBack()
     }
 
+    override fun authSuccessful(user: UserDisplayable) {
+        fragmentNavigator.goBack()
+    }
+
 }

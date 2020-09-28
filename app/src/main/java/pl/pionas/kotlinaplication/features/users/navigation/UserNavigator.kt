@@ -10,4 +10,5 @@ import pl.pionas.kotlinaplication.features.users.all.presentation.model.UserDisp
 interface UserNavigator {
     fun openUserDetailsScreen(user: UserDisplayable)
     fun goBack()
+    fun authSuccessful(user: UserDisplayable)
 }

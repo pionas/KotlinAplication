@@ -8,7 +8,7 @@ import pl.pionas.kotlinaplication.features.users.domain.model.UserCredential
  * adrian@pionka.com
  */
 interface UserRepository {
-    suspend fun login(user: UserCredential): User?
+    suspend fun auth(user: UserCredential): User?
     suspend fun getUsers(): List<User>
     suspend fun getUserByUsername(username: String): User?
 }

@@ -7,16 +7,17 @@
 
         <variable
             name="viewModel"
-            type="pl.pionas.kotlinaplication.features.users.login.presentation.LoginViewModel" />
+            type="pl.pionas.kotlinaplication.features.users.auth.presentation.AuthViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".features.users.login.presentation.LoginFragment">
+        tools:context="pl.pionas.kotlinaplication.features.users.auth.presentation.AuthFragment">
 
         <RelativeLayout
             android:id="@+id/relativeLayoutForm"
+            showOnIdleState="@{viewModel.uiState}"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="10dp"
@@ -29,6 +30,7 @@
                 android:id="@+id/textViewUsername"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:labelFor="@+id/editTextUsername"
                 android:text="@string/username" />
 
             <EditText
@@ -38,14 +40,18 @@
                 android:layout_below="@+id/textViewUsername"
                 android:autofillHints=""
                 android:ems="10"
+                android:error="@{viewModel.usernameError}"
                 android:inputType="textPersonName"
-                android:labelFor="@+id/textViewUsername" />
+                android:labelFor="@+id/textViewUsername"
+                android:singleLine="true"
+                android:text="@={viewModel.username}" />
 
             <TextView
                 android:id="@+id/textViewPassword"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/editTextUsername"
+                android:labelFor="@+id/editTextPassword"
                 android:text="@string/password" />
 
             <EditText
@@ -55,8 +61,12 @@
                 android:layout_below="@+id/textViewPassword"
                 android:autofillHints=""
                 android:ems="10"
+                android:error="@{viewModel.passwordError}"
                 android:inputType="textPassword"
-                android:labelFor="@+id/textViewPassword" />
+                android:labelFor="@+id/textViewPassword"
+                android:singleLine="true"
+                android:text="@={viewModel.password}"
+                tools:ignore="LabelFor" />
 
             <Button
                 android:id="@+id/buttonLogin"
@@ -65,12 +75,13 @@
                 android:layout_below="@+id/editTextPassword"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentEnd="true"
-                android:enabled="false"
-                android:text="@string/login" />
+                android:onClick="@{()->viewModel.loginClicked()}"
+                android:text="@string/auth" />
         </RelativeLayout>
 
         <ProgressBar
             android:id="@+id/progressBarLoading"
+            showOnPendingState="@{viewModel.uiState}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

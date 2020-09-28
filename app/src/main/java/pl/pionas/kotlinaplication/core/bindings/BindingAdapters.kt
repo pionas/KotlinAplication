@@ -1,6 +1,7 @@
 package pl.pionas.kotlinaplication.core.bindings
 
 import android.view.View
+import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.ProgressBar
 import androidx.annotation.DrawableRes
@@ -23,11 +24,10 @@ object BindingAdapters {
         progressBar.visibility = if (uiState == UiState.Pending) View.VISIBLE else View.GONE
     }
 
-
     @BindingAdapter("showOnIdleState")
     @JvmStatic
-    fun showOnIdleState(recyclerView: RecyclerView, uiState: UiState) {
-        recyclerView.visibility = if (uiState == UiState.Idle) View.VISIBLE else View.GONE
+    fun showOnIdleState(viewGroup: ViewGroup, uiState: UiState) {
+        viewGroup.visibility = if (uiState == UiState.Idle) View.VISIBLE else View.GONE
     }
 
     @BindingAdapter("items")

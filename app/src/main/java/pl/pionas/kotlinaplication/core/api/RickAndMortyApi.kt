@@ -24,8 +24,8 @@ interface RickAndMortyApi {
     @GET("location")
     suspend fun getLocations(): LocationResponse
 
-    @GET("login")
-    suspend fun login(@Body user: UserCredential): UserResponse
+    @GET("auth")
+    suspend fun auth(@Body user: UserCredential): UserResponse
 
     @GET("user")
     suspend fun getUsers(): UserResponse

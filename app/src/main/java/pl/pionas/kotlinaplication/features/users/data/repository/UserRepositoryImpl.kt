@@ -19,14 +19,14 @@ class UserRepositoryImpl(
     private val networkStateProvider: NetworkStateProvider,
     private val errorWrapper: ErrorWrapper
 ) : UserRepository {
-    override suspend fun login(user: UserCredential): User? {
+    override suspend fun auth(user: UserCredential): User? {
         return callOrThrow(errorWrapper) {
             getUserFromRemote(user)
         }
     }
 
     private suspend fun getUserFromRemote(user: UserCredential): User {
-        return rickAndMortyApi.login(user).results[0].toUser()
+        return rickAndMortyApi.auth(user).results[0].toUser()
     }
 
     override suspend fun getUsers(): List<User> {

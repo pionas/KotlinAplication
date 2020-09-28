@@ -10,8 +10,8 @@ import pl.pionas.kotlinaplication.features.users.data.repository.UserRepositoryI
 import pl.pionas.kotlinaplication.features.users.details.presentation.UserViewModel
 import pl.pionas.kotlinaplication.features.users.domain.AuthUseCase
 import pl.pionas.kotlinaplication.features.users.domain.GetUsersUseCase
-import pl.pionas.kotlinaplication.features.users.login.presentation.LoginFragment
-import pl.pionas.kotlinaplication.features.users.login.presentation.LoginViewModel
+import pl.pionas.kotlinaplication.features.users.auth.presentation.AuthFragment
+import pl.pionas.kotlinaplication.features.users.auth.presentation.AuthViewModel
 import pl.pionas.kotlinaplication.features.users.navigation.UserNavigator
 import pl.pionas.kotlinaplication.features.users.navigation.UserNavigatorImpl
 
@@ -34,6 +34,6 @@ val userModule = module {
     factory { UsersFragment() }
     factory { UsersAdapter(get()) }
     viewModel { UserViewModel() }
-    viewModel { LoginViewModel(get(), get()) }
-    factory { LoginFragment() }
+    viewModel { AuthViewModel(get(), get(), get(), get()) }
+    factory { AuthFragment() }
 }

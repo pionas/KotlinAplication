@@ -11,5 +11,5 @@ import pl.pionas.kotlinaplication.features.users.domain.model.UserCredential
  */
 class AuthUseCase(private val userRepository: UserRepository) :
     UseCase<User?, UserCredential>() {
-    override suspend fun action(params: UserCredential) = userRepository.login(params)
+    override suspend fun action(params: UserCredential) = userRepository.auth(params)
 }

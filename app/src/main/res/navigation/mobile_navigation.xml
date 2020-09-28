@@ -55,9 +55,9 @@
 
     <fragment
         android:id="@+id/auth_screen"
-        android:name="pl.pionas.kotlinaplication.features.users.login.presentation.LoginFragment"
+        android:name="pl.pionas.kotlinaplication.features.users.auth.presentation.AuthFragment"
         android:label="@string/title_auth"
-        tools:layout="@layout/fragment_login"></fragment>
+        tools:layout="@layout/fragment_auth"></fragment>
 
 
     <fragment
