@@ -26,7 +26,7 @@ class UserRepositoryImpl(
     }
 
     private suspend fun getUserFromRemote(user: UserCredential): User {
-        return rickAndMortyApi.auth(user).results[0].toUser()
+        return rickAndMortyApi.auth(user).data[0].toUser()
     }
 
     override suspend fun getUsers(): List<User> {
@@ -51,7 +51,7 @@ class UserRepositoryImpl(
 
     private suspend fun getUsersFromRemote(): List<User> {
         return rickAndMortyApi.getUsers()
-            .results
+            .data
             .map { it.toUser() }
     }
 
@@ -69,7 +69,7 @@ class UserRepositoryImpl(
 
     private suspend fun getUserByUsernameFromRemote(username: String): User {
         return rickAndMortyApi.getUser(username)
-            .results.get(0).toUser()
+            .data.get(0).toUser()
     }
 
     private suspend fun getUserFromLocal(username: String): User {

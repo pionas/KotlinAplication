@@ -1,15 +1,11 @@
 package pl.pionas.kotlinaplication.core.api.model
 
+
 import com.google.gson.annotations.SerializedName
 
-/**
- * Created by Adrian Pionka on 31 sierpień 2020
- * adrian@pionka.com
- */
-
-data class UserResponse(
+data class UserMessageResponse(
     @SerializedName("data")
-    val `data`: List<UserRemote>,
+    val `data`: List<UserMessageRemote>,
     @SerializedName("links")
     val links: Links,
     @SerializedName("meta")
