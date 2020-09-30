@@ -2,6 +2,7 @@ package pl.pionas.kotlinaplication.features.users.all.presentation
 
 import androidx.lifecycle.Observer
 import androidx.lifecycle.viewModelScope
+import io.mockk.coVerify
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
@@ -9,6 +10,7 @@ import org.amshove.kluent.shouldBe
 import org.junit.jupiter.api.Test
 import pl.pionas.kotlinaplication.core.base.UiState
 import pl.pionas.kotlinaplication.core.exception.ErrorMapper
+import pl.pionas.kotlinaplication.features.users.all.presentation.model.UserDisplayable
 import pl.pionas.kotlinaplication.features.users.domain.GetUsersUseCase
 import pl.pionas.kotlinaplication.features.users.domain.model.User
 import pl.pionas.kotlinaplication.features.users.navigation.UserNavigator
@@ -100,5 +102,30 @@ internal class UsersViewModelTest : ViewModelTest() {
         // then
         viewModel.uiState.getOrAwaitValue() shouldBe UiState.Idle
         verify { observer.onChanged(throwable.message) }
+    }
+
+    @Test
+    fun `show user details screen after click on user list`() {
+        // given
+        val user = User.mock()
+        val userDisplayable = UserDisplayable(user)
+        val users = listOf(user, User.mock(), User.mock(), User.mock())
+        val useCase = mockk<GetUsersUseCase> {
+            every { this@mockk(any(), any(), any(), any()) } answers {
+                lastArg<(Result<List<User>>) -> Unit>()(Result.success(users))
+            }
+        }
+        val userNavigator = mockk<UserNavigator>(relaxed = true)
+        val errorMapper = mockk<ErrorMapper>()
+        val viewModel = UsersViewModel(useCase, userNavigator, errorMapper)
+
+        // when
+        viewModel.users.observeForTesting()
+        viewModel.users.value?.get(0)?.let {
+            viewModel.onUserClick(it)
+        }
+
+        // then
+        coVerify { userNavigator.openUserDetailsScreen(userDisplayable) }
     }
 }
