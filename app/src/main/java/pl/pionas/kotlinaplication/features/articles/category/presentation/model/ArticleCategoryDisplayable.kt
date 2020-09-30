@@ -15,7 +15,9 @@ data class ArticleCategoryDisplayable(
     val order: Int?,
     val createdAt: Date,
     val updatedAt: Date?,
-    val getParent: Int
+    val getParent: Int?,
+    val articlesCount: Int?
+
 ) : Parcelable {
     constructor(articleCategory: ArticleCategory) : this(
         id = articleCategory.id,
@@ -26,7 +28,8 @@ data class ArticleCategoryDisplayable(
         order = articleCategory.order,
         createdAt = articleCategory.createdAt,
         updatedAt = articleCategory.updatedAt,
-        getParent = articleCategory.getParent
+        getParent = articleCategory.getParent,
+        articlesCount = articleCategory.articlesCount
     )
 
     companion object
