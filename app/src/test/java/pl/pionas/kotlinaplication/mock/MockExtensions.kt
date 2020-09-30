@@ -80,7 +80,8 @@ fun UserRemote.Companion.mock() = UserRemote(
     name = "user name",
     avatar = "user avatar",
     createdAt = Date(),
-    lastActive = null
+    lastActive = null,
+    userFieldsValues = null
 )
 
 fun UserResponse.Companion.mock() = UserResponse(
@@ -96,7 +97,8 @@ fun UserCached.Companion.mock() = UserCached(
     name = "user name",
     avatar = "user avatar",
     createdAt = Date(),
-    lastActive = null
+    lastActive = null,
+    userFieldsValues = null
 )
 
 @TestOnly
@@ -106,12 +108,13 @@ fun User.Companion.mock() = User(
     avatar = "user avatar",
     createdAt = Date(),
     lastActive = null,
-    userFieldsValues = usersFieldsValues
+    userFieldsValues = null
 )
 
 @TestOnly
 fun UserDisplayable.Companion.mock() = UserDisplayable(
     id = 1,
     name = "user name",
-    avatar = "user avatar"
+    avatar = "user avatar",
+    userFieldsValues = null
 )
