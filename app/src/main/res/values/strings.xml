@@ -10,6 +10,7 @@
     <string name="password_cant_be_too_short">Password must contain at least 4 articles!</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="title_articles">Articles</string>
+    <string name="title_articles_categories">Articles categories</string>
     <string name="title_auth">Auth</string>
     <string name="title_article_details">Article details</string>
     <string name="title_users">Users</string>

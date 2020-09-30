@@ -15,7 +15,7 @@ interface Api {
     @GET("articles")
     suspend fun getArticles(): ArticleResponse
 
-    @GET("articlesCategories")
+    @GET("contests")
     suspend fun getArticlesCategories(): ArticleCategoryResponse
 
     @GET("forum")

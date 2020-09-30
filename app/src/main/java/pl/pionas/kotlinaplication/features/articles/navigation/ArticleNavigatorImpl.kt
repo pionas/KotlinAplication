@@ -3,6 +3,7 @@ package pl.pionas.kotlinaplication.features.episodes.navigation
 import pl.pionas.kotlinaplication.R
 import pl.pionas.kotlinaplication.core.navigation.FragmentNavigator
 import pl.pionas.kotlinaplication.features.articles.all.presentation.model.ArticleDisplayable
+import pl.pionas.kotlinaplication.features.articles.category.presentation.model.ArticleCategoryDisplayable
 import pl.pionas.kotlinaplication.features.articles.details.presentation.ArticleDetailsFragment
 import pl.pionas.kotlinaplication.features.articles.navigation.ArticleNavigator
 
@@ -18,6 +19,14 @@ class ArticleNavigatorImpl(private val fragmentNavigator: FragmentNavigator) :
             R.id.action_navigate_from_articles_screen_to_article_details_screen,
             ArticleDetailsFragment.ARTICLE_DETAILS_KEY to article
         )
+    }
+
+    override fun openArticleCategoryDetailsScreen(articleCategory: ArticleCategoryDisplayable) {
+        throw Exception("Not yet implemented")
+        //        fragmentNavigator.navigateTo(
+//            R.id.action_navigate_from_articles_categories_screen_to_article_category_details_screen,
+//            ArticleDetailsFragment.ARTICLE_DETAILS_KEY to articleCategory
+//        )
     }
 
     override fun goBack() {

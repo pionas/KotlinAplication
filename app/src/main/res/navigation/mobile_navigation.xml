@@ -42,4 +42,13 @@
         android:id="@+id/user_details_screen"
         android:name="pl.pionas.kotlinaplication.features.users.details.presentation.UserDetailsFragment"
         android:label="@string/title_user_details" />
+
+
+    <fragment
+        android:id="@+id/articles_categories_screen"
+        android:name="pl.pionas.kotlinaplication.features.articles.category.presentation.ArticlesCategoriesFragment"
+        android:label="@string/title_articles_categories"
+        tools:layout="@layout/fragment_articles_categories">
+
+    </fragment>
 </navigation>

@@ -3,8 +3,10 @@ package pl.pionas.kotlinaplication.core.database
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
+import pl.pionas.kotlinaplication.features.articles.data.local.ArticleCategoryDao
 import pl.pionas.kotlinaplication.features.articles.data.local.ArticleDao
 import pl.pionas.kotlinaplication.features.articles.data.local.model.ArticleCached
+import pl.pionas.kotlinaplication.features.articles.data.local.model.ArticleCategoryCached
 import pl.pionas.kotlinaplication.features.users.data.local.UserDao
 import pl.pionas.kotlinaplication.features.users.data.local.model.UserCached
 
@@ -13,14 +15,15 @@ import pl.pionas.kotlinaplication.features.users.data.local.model.UserCached
  * adrian@pionka.com
  */
 @Database(
-    entities = [ArticleCached::class, UserCached::class],
-    version = 2,
+    entities = [ArticleCached::class, ArticleCategoryCached::class, UserCached::class],
+    version = 3,
     exportSchema = false
 )
 @TypeConverters(ListConverter::class, DateConverter::class, HashMapConverter::class)
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun articleDao(): ArticleDao
+    abstract fun articleCategoryDao(): ArticleCategoryDao
     abstract fun userDao(): UserDao
 
 }
