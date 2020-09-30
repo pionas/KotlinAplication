@@ -1,12 +1,14 @@
 package pl.pionas.kotlinaplication.core.di
 
+import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.dsl.module
 import pl.pionas.kotlinaplication.BuildConfig
-import pl.pionas.kotlinaplication.core.api.RickAndMortyApi
+import pl.pionas.kotlinaplication.core.api.Api
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+
 
 /**
  * Created by Adrian Pionka on 13 lipiec 2020
@@ -30,14 +32,15 @@ val networkModule = module {
     }
 
     single {
+        val gson = GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss.S'Z'").setPrettyPrinting().create()
         Retrofit.Builder()
-            .baseUrl("https://rickandmortyapi.com/api/")
-            .addConverterFactory(GsonConverterFactory.create())
+            .baseUrl("http://konki.pionas.info/api/")
+            .addConverterFactory(GsonConverterFactory.create(gson))
             .client(get<OkHttpClient>())
             .build()
     }
 
     single {
-        get<Retrofit>().create(RickAndMortyApi::class.java)
+        get<Retrofit>().create(Api::class.java)
     }
 }

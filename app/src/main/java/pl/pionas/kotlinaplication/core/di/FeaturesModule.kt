@@ -1,8 +1,6 @@
 package pl.pionas.kotlinaplication.core.di
 
-import pl.pionas.kotlinaplication.features.characters.di.characterModule
-import pl.pionas.kotlinaplication.features.episodes.di.episodeModule
-import pl.pionas.kotlinaplication.features.locations.di.locationModule
+import pl.pionas.kotlinaplication.features.articles.di.articleModule
 import pl.pionas.kotlinaplication.features.users.di.userModule
 
 /**
@@ -11,8 +9,6 @@ import pl.pionas.kotlinaplication.features.users.di.userModule
  */
 
 val featureModules = listOf(
-    characterModule,
-    episodeModule,
-    locationModule,
+    articleModule,
     userModule
 )

@@ -5,7 +5,7 @@ import io.mockk.coVerify
 import io.mockk.mockk
 import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Test
-import pl.pionas.kotlinaplication.core.api.RickAndMortyApi
+import pl.pionas.kotlinaplication.core.api.Api
 import pl.pionas.kotlinaplication.core.api.model.UserResponse
 import pl.pionas.kotlinaplication.core.exception.ErrorWrapper
 import pl.pionas.kotlinaplication.core.network.NetworkStateProvider
@@ -22,7 +22,7 @@ internal class UserRepositoryImplTest {
     @Test
     fun `GIVEN network is connected WHEN users request THEN fetch users from API`() {
         // given
-        val api = mockk<RickAndMortyApi>() {
+        val api = mockk<Api>() {
             coEvery { getUsers() } returns UserResponse.mock()
         }
         val userDao = mockk<UserDao>(relaxed = true)
@@ -44,7 +44,7 @@ internal class UserRepositoryImplTest {
     @Test
     fun `GIVEN network is connected AND successful data fetch WHEN users request THEN save users to local database`() {
         // given
-        val api = mockk<RickAndMortyApi>() {
+        val api = mockk<Api>() {
             coEvery { getUsers() } returns UserResponse.mock()
         }
         val userDao = mockk<UserDao>(relaxed = true)
@@ -66,7 +66,7 @@ internal class UserRepositoryImplTest {
     @Test
     fun `GIVEN network is disconnected WHEN users request THEN fetch users from local database`() {
         // given
-        val api = mockk<RickAndMortyApi>(relaxed = true)
+        val api = mockk<Api>(relaxed = true)
         val userDao = mockk<UserDao> {
             coEvery { getUsers() } returns listOf(UserCached.mock(), UserCached.mock())
         }

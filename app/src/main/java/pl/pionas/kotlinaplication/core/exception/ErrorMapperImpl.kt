@@ -10,6 +10,7 @@ import pl.pionas.kotlinaplication.R
  */
 class ErrorMapperImpl(private val context: Context) : ErrorMapper {
     override fun map(throwable: Throwable): String {
+        throwable.printStackTrace()
         return when (throwable) {
             is ServerException -> mapServerException(throwable)
             else -> getMessage(R.string.error_unknown)

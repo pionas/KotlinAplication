@@ -19,7 +19,7 @@ public class UsersViewModel(
     private val _users by lazy {
         MutableLiveData<List<User>>()
             .also {
-                getEpisodes(it)
+                getUsers(it)
             }
     }
 
@@ -29,7 +29,7 @@ public class UsersViewModel(
         }
     }
 
-    private fun getEpisodes(userLiveData: MutableLiveData<List<User>>) {
+    private fun getUsers(userLiveData: MutableLiveData<List<User>>) {
         setPendingState()
         getUsersUseCase(
             params = Unit,

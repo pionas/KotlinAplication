@@ -4,15 +4,11 @@ import androidx.room.TypeConverter
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 
-/**
- * Created by Adrian Pionka on 21 sierpień 2020
- * adrian@pionka.com
- */
-class ListConverter {
+class HashMapConverter {
     companion object {
         @TypeConverter
         @JvmStatic
-        fun toJson(data: List<String>?): String {
+        fun toJson(data: HashMap<String, String>?): String {
             if (data.isNullOrEmpty()) {
                 return ""
             }
@@ -21,11 +17,11 @@ class ListConverter {
 
         @TypeConverter
         @JvmStatic
-        fun fromJson(json: String): List<String>? {
+        fun fromJson(json: String): HashMap<String, String>? {
             if (json.isEmpty()) {
                 return null
             }
-            return Gson().fromJson(json, object : TypeToken<List<String>>() {}.type)
+            return Gson().fromJson(json, object : TypeToken<HashMap<String, String>>() {}.type)
         }
     }
 }

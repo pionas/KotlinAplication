@@ -2,19 +2,13 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/characters_screen"
+        android:id="@+id/articles_screen"
+        android:icon="@drawable/ic_list_24"
+        android:title="@string/title_articles" />
+    <item
+        android:id="@+id/users_screen"
         android:icon="@drawable/ic_person_24"
-        android:title="@string/title_characters" />
-
-    <item
-        android:id="@+id/episodes_screen"
-        android:icon="@drawable/ic_movie_24"
-        android:title="@string/title_episodes" />
-
-    <item
-        android:id="@+id/locations_screen"
-        android:icon="@drawable/ic_location_24"
-        android:title="@string/title_locations" />
+        android:title="@string/title_users" />
 
     <item
         android:id="@+id/auth_screen"

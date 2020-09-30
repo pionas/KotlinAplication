@@ -4,6 +4,13 @@ package pl.pionas.kotlinaplication.core.api.model
 import com.google.gson.annotations.SerializedName
 import java.util.*
 
+data class ForumTopicResponse(
+    @SerializedName("data")
+    val `data`: List<ForumTopicRemote>?
+) : BaseResponse() {
+    companion object
+}
+
 data class ForumTopicRemote(
     @SerializedName("id")
     val id: Int,

@@ -4,7 +4,8 @@ import io.mockk.*
 import kotlinx.coroutines.runBlocking
 import org.amshove.kluent.shouldBe
 import org.junit.jupiter.api.Test
-import pl.pionas.kotlinaplication.core.api.RickAndMortyApi
+import org.junit.jupiter.api.assertThrows
+import pl.pionas.kotlinaplication.core.api.Api
 import pl.pionas.kotlinaplication.core.api.model.UserResponse
 import pl.pionas.kotlinaplication.core.exception.ErrorWrapper
 import pl.pionas.kotlinaplication.core.network.NetworkStateProvider
@@ -23,7 +24,7 @@ internal class AuthRepositoryImplTest {
     fun `GIVEN network is connected WHEN auth request THEN fetch user from API`() {
         // given
         val user = UserCredential("username", "password")
-        val api = mockk<RickAndMortyApi>() {
+        val api = mockk<Api>() {
             coEvery { auth(user) } returns UserResponse.mock()
         }
         val userDao = mockk<UserDao>(relaxed = true)
@@ -49,7 +50,7 @@ internal class AuthRepositoryImplTest {
         val error = "Ops... Something went wrong"
         val throwable = Throwable(error)
         val user = UserCredential("username", "password")
-        val api = mockk<RickAndMortyApi> {
+        val api = mockk<Api> {
             coEvery { auth(user) } throws throwable
         }
         val userDao = mockk<UserDao>(relaxed = true)
@@ -60,7 +61,9 @@ internal class AuthRepositoryImplTest {
             UserRepositoryImpl(api, userDao, networkStateProvider, errorWrapper)
 
         // when
-        runBlocking { repository.auth(user) shouldBe throwable }
+        runBlocking {
+            assertThrows<Throwable> { repository.auth(user) }
+        }
 
         // then
         coVerify { api.auth(user) }

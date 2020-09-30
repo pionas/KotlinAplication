@@ -37,9 +37,21 @@ object BindingAdapters {
         (recyclerView.adapter as? BindableAdapter<T>)?.setItems(items)
     }
 
-    @BindingAdapter(value = ["imageUrl", "placeholder"], requireAll = false)
+    @BindingAdapter(value = ["imageUrl", "placeholder", "hidden"], requireAll = false)
     @JvmStatic
-    fun setImage(imageView: ImageView, imageUrl: String, @DrawableRes placeholder: Int) {
+    fun setImage(
+        imageView: ImageView,
+        imageUrl: String?,
+        @DrawableRes placeholder: Int,
+        hidden: Boolean
+    ) {
+        if (hidden) {
+            imageView.visibility = View.GONE
+        }
+        if (imageUrl.isNullOrEmpty()) {
+            return
+        }
+        imageView.visibility = View.VISIBLE
         Glide.with(imageView.context)
             .load(imageUrl)
             .placeholder(placeholder)

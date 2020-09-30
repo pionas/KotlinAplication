@@ -4,28 +4,28 @@ package pl.pionas.kotlinaplication.core.api.model
 import com.google.gson.annotations.SerializedName
 import java.util.*
 
-data class UserFieldOptionResponse(
+data class ForumCategoryResponse(
     @SerializedName("data")
-    val `data`: List<UserFieldOptionRemote>?
+    val `data`: List<ForumCategoryRemote>?
 ) : BaseResponse() {
     companion object
 }
 
-data class UserFieldOptionRemote(
+data class ForumCategoryRemote(
     @SerializedName("id")
     val id: Int,
-    @SerializedName("field_id")
-    val fieldId: Int,
-    @SerializedName("label")
-    val label: String,
+    @SerializedName("title")
+    val title: String,
     @SerializedName("description")
-    val description: String?,
+    val description: String,
+    @SerializedName("slug")
+    val slug: String,
     @SerializedName("order")
     val order: String,
     @SerializedName("created_at")
     val createdAt: Date,
     @SerializedName("updated_at")
     val updatedAt: Date?,
-    @SerializedName("user_field")
-    val userField: UserFieldRemote
+    @SerializedName("forum_forum")
+    val forumForum: List<ForumForumRemote>
 )

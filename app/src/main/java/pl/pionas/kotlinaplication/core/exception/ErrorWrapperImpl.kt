@@ -8,6 +8,7 @@ import retrofit2.HttpException
  */
 class ErrorWrapperImpl : ErrorWrapper {
     override fun wrap(throwable: Throwable): Throwable {
+        throwable.printStackTrace()
         return when (throwable) {
             is HttpException -> wrapServerError(throwable)
             else -> throwable

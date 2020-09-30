@@ -34,14 +34,15 @@ class UserDetailsFragment :
 
     private fun showUserDetails() {
         viewModel.userDisplayable?.let {
+            it.avatar?.let {
+                Glide
+                    .with(this)
+                    .load(it)
+                    .centerCrop()
+                    .placeholder(R.drawable.ic_cloud_download)
+                    .into(imageViewUserAvatar)
+            }
             textViewUserName.text = it.name
-            Glide.with(imageViewUserAvatar).load(it.avatar)
-            Glide
-                .with(this)
-                .load(it.avatar)
-                .centerCrop()
-                .placeholder(R.drawable.ic_cloud_download)
-                .into(imageViewUserAvatar)
         } ?: throw IllegalArgumentException("userDetailsKey cannot be null")
     }
 

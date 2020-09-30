@@ -3,62 +3,29 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/characters_screen">
+    app:startDestination="@+id/articles_screen">
 
     <fragment
-        android:id="@+id/characters_screen"
-        android:name="pl.pionas.kotlinaplication.features.characters.all.presentation.CharactersFragment"
-        android:label="@string/title_characters"
-        tools:layout="@layout/fragment_character">
+        android:id="@+id/articles_screen"
+        android:name="pl.pionas.kotlinaplication.features.articles.all.presentation.ArticlesFragment"
+        android:label="@string/title_articles"
+        tools:layout="@layout/fragment_article">
         <action
-            android:id="@+id/action_navigate_from_characters_screen_to_character_details_screen"
-            app:destination="@id/character_details_screen"
-            app:popUpTo="@id/characters_screen" />
+            android:id="@+id/action_navigate_from_articles_screen_to_article_details_screen"
+            app:destination="@id/article_details_screen"
+            app:popUpTo="@id/articles_screen" />
     </fragment>
 
     <fragment
-        android:id="@+id/episodes_screen"
-        android:name="pl.pionas.kotlinaplication.features.episodes.all.presentation.EpisodesFragment"
-        android:label="@string/title_episodes"
-        tools:layout="@layout/fragment_episode">
-        <action
-            android:id="@+id/action_navigate_from_episodes_screen_to_episode_details_screen"
-            app:destination="@id/episode_details_screen"
-            app:popUpTo="@id/episodes_screen" />
-    </fragment>
-
-    <fragment
-        android:id="@+id/locations_screen"
-        android:name="pl.pionas.kotlinaplication.features.locations.all.presentation.LocationsFragment"
-        android:label="@string/title_locations"
-        tools:layout="@layout/fragment_location">
-        <action
-            android:id="@+id/action_navigate_from_locations_screen_to_location_details_screen"
-            app:destination="@id/location_details_screen"
-            app:popUpTo="@id/locations_screen" />
-    </fragment>
-
-    <fragment
-        android:id="@+id/episode_details_screen"
-        android:name="pl.pionas.kotlinaplication.features.episodes.details.presentation.EpisodeDetailsFragment"
-        android:label="@string/title_episode_details" />
-
-    <fragment
-        android:id="@+id/character_details_screen"
-        android:name="pl.pionas.kotlinaplication.features.characters.details.presentation.CharacterDetailsFragment"
-        android:label="@string/title_character_details" />
-
-    <fragment
-        android:id="@+id/location_details_screen"
-        android:name="pl.pionas.kotlinaplication.features.locations.details.presentation.LocationDetailsFragment"
-        android:label="@string/title_location_details" />
+        android:id="@+id/article_details_screen"
+        android:name="pl.pionas.kotlinaplication.features.articles.details.presentation.ArticleDetailsFragment"
+        android:label="@string/title_article_details" />
 
     <fragment
         android:id="@+id/auth_screen"
         android:name="pl.pionas.kotlinaplication.features.users.auth.presentation.AuthFragment"
         android:label="@string/title_auth"
         tools:layout="@layout/fragment_auth"></fragment>
-
 
     <fragment
         android:id="@+id/users_screen"
